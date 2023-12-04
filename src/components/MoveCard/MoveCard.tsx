@@ -1,27 +1,32 @@
 import * as React from 'react'
+
+import cx from 'classnames'
 import Image from 'next/image'
-import placeholder from './placeholder.png'
+import Typography from '@/components/Typography'
 
 import styles from './MoveCard.module.css'
 
 export interface MoveCardProps {
-  title?: React.ReactNode
+  className?: string
+  title?: string
   posterPath?: string
   releaseDate?: string
 }
 
 const MoveCard = (props: MoveCardProps) => {
-  const { title, posterPath, releaseDate } = props
+  const { className, title = "", posterPath, releaseDate } = props
   return (
-    <div>
-      {title}
+    <div className={cx(styles.root, className)}>
+      <Typography>{title}</Typography>
       <Image
+        className={styles.img}
         loading="lazy"
         src={`https://www.themoviedb.org/t/p/w220_and_h330_face${posterPath}`}
         width={220}
         height={330}
-        alt="" />
-      {releaseDate}
+        alt={title}
+      />
+      <Typography>{releaseDate}</Typography>
     </div>
   )
 }

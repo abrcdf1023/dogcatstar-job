@@ -1,2 +1,14 @@
 .root {
+  width: 220px;
+}
+
+@media (max-width: 600px) {
+  .root {
+    width: 100%;
+  }
+
+  .img {
+    width: 100%;
+    height: auto;
+  }
 }
