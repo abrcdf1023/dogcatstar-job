@@ -14,13 +14,13 @@ const cx = className.bind(styles)
 export interface MoveCardProps {
   className?: string
   title?: string
-  posterPath?: string
+  posterPath?: string | null
   releaseDate?: string
 }
 
 const MoveCard = (props: MoveCardProps) => {
   const { className, title = "", posterPath, releaseDate } = props
-  const [error, setError] = React.useState(false)
+  const [error, setError] = React.useState(!posterPath)
 
   const handleError = () => {
     setError(true)

@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: 'www.themoviedb.org',
       },
     ],
+    deviceSizes: [600, 900, 1200]
   },
 }
 
