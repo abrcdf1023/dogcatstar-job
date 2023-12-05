@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import Image from 'next/image'
 import Typography from '@/components/Typography'
+import Link from 'next/link'
 
 import className from 'classnames/bind'
 import shimmer from '@/utils/shimmer'
@@ -13,6 +14,7 @@ import styles from './MoveCard.module.css'
 const cx = className.bind(styles)
     
 export interface MoveCardProps {
+  href: string
   className?: string
   title?: string
   posterPath?: string | null
@@ -20,7 +22,7 @@ export interface MoveCardProps {
 }
 
 const MoveCard = (props: MoveCardProps) => {
-  const { className, title = "", posterPath, releaseDate } = props
+  const { className, title = "", posterPath, releaseDate, href } = props
   const [error, setError] = React.useState(!posterPath)
 
   const handleError = () => {
@@ -29,16 +31,18 @@ const MoveCard = (props: MoveCardProps) => {
 
   return (
     <div className={cx('root', className)}>
-      <Image
-        className={cx('img')}
-        loading="lazy"
-        src={error ? notfoundImage : `https://www.themoviedb.org/t/p/w220_and_h330_face${posterPath}`}
-        width={220}
-        height={330}
-        alt={title}
-        placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(220, 330))}`}
-        onError={handleError}
-      />
+      <Link href={href}>
+        <Image
+          className={cx('img')}
+          loading="lazy"
+          src={error ? notfoundImage : `https://www.themoviedb.org/t/p/w220_and_h330_face${posterPath}`}
+          width={220}
+          height={330}
+          alt={title}
+          placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(220, 330))}`}
+          onError={handleError}
+        />
+      </Link>
       <div className={cx('card-body')}>
         <Typography color='black'>{title}</Typography>
         <Typography color='black'>{releaseDate}</Typography>

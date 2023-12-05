@@ -15,6 +15,7 @@ export default async function Home() {
         {data.results.map((el) => (
           <Grid key={el.id}>
             <MoveCard
+              href={`/movie/${el.id}`}
               title={el.title}
               posterPath={el.poster_path}
               releaseDate={el.release_date}
