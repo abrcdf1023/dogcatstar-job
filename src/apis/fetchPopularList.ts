@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { ListResponse, Movie } from '@/interfaces/entities'
 import client from './client'
 
