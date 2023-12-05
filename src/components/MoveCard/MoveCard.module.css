@@ -1,5 +1,12 @@
 .root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   width: 220px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 600px) {
@@ -11,4 +18,8 @@
     width: 100%;
     height: auto;
   }
+}
+
+.card-body {
+  padding: 8px 16px;
 }

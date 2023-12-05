@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-import cx from 'classnames'
 import Image from 'next/image'
 import Typography from '@/components/Typography'
 
+import className from 'classnames/bind'
 import styles from './MoveCard.module.css'
+const cx = className.bind(styles)
 
 export interface MoveCardProps {
   className?: string
@@ -16,17 +17,19 @@ export interface MoveCardProps {
 const MoveCard = (props: MoveCardProps) => {
   const { className, title = "", posterPath, releaseDate } = props
   return (
-    <div className={cx(styles.root, className)}>
-      <Typography>{title}</Typography>
+    <div className={cx('root', className)}>
       <Image
-        className={styles.img}
+        className={cx('img')}
         loading="lazy"
         src={`https://www.themoviedb.org/t/p/w220_and_h330_face${posterPath}`}
         width={220}
         height={330}
         alt={title}
       />
-      <Typography>{releaseDate}</Typography>
+      <div className={cx('card-body')}>
+        <Typography color='black'>{title}</Typography>
+        <Typography color='black'>{releaseDate}</Typography>
+      </div>
     </div>
   )
 }
