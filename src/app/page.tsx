@@ -11,15 +11,17 @@ export default async function Home() {
 
   return (
     <Layout>
-      {data.results.map((el) => (
-        <Grid key={el.id}>
-          <MoveCard
-            title={el.title}
-            posterPath={el.poster_path}
-            releaseDate={el.release_date}
-          />
-        </Grid>
-      ))}
+      <Grid container>
+        {data.results.map((el) => (
+          <Grid key={el.id}>
+            <MoveCard
+              title={el.title}
+              posterPath={el.poster_path}
+              releaseDate={el.release_date}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </Layout>
   );
 }

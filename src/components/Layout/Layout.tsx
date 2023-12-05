@@ -10,6 +10,7 @@ import Container from '@/components/Container'
 import SearchBar from '@/components/SearchBar'
 import MoveCard from '@/components/MoveCard'
 import Grid from '@/components/Grid'
+import Skeleton from '@/components/Skeleton'
 
 import styles from './Layout.module.css'
 
@@ -28,18 +29,30 @@ const Layout = ({ children }: LayoutProps) => {
   }
 
   const renderList = () => {
-    if (isLoading || isValidating) return <p>Loading...</p>
+    if (isLoading || isValidating) {
+      return (
+        <Grid container>
+          {Array.from({ length: 20 }, (_, i) => (
+            <Grid key={i}>
+              <Skeleton width={220} height={330} />
+            </Grid>
+          ))}
+        </Grid>
+      )
+    }
     if (data) {
       return (
-        data.results.map((el) => (
-          <Grid key={el.id}>
-            <MoveCard
-              title={el.title}
-              posterPath={el.poster_path}
-              releaseDate={el.release_date}
-            />
-          </Grid>
-        ))
+        <Grid container>
+          {data.results.map((el) => (
+            <Grid key={el.id}>
+              <MoveCard
+                title={el.title}
+                posterPath={el.poster_path}
+                releaseDate={el.release_date}
+              />
+            </Grid>
+          ))}
+        </Grid>
       )
     } 
     return children
@@ -51,9 +64,7 @@ const Layout = ({ children }: LayoutProps) => {
         <div className={styles.search}>
           <SearchBar onChange={handleSearchChange} />
         </div>
-        <Grid container>
-          {renderList()}
-        </Grid>
+        {renderList()}
       </main>
     </Container>
   )

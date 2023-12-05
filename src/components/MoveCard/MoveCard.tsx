@@ -6,7 +6,8 @@ import Image from 'next/image'
 import Typography from '@/components/Typography'
 
 import className from 'classnames/bind'
-import { shimmer, toBase64 } from './utils'
+import shimmer from '@/utils/shimmer'
+import toBase64 from '@/utils/toBase64'
 import notfoundImage from './image-not-found.jpg'
 import styles from './MoveCard.module.css'
 const cx = className.bind(styles)
