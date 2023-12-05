@@ -31,7 +31,7 @@ const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
       style={{
         "--font-size": fontSize,
         "--font-weight": fontWeight,
-        "--color": color,
+        "--color": `var(--${color})`,
         ...style,
       }}
       {...other}
