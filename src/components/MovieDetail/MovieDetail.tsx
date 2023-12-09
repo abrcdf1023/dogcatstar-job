@@ -5,7 +5,7 @@ import getImageUrl from '@/utils/getImageUrl'
 import Container from '@/components/Container'
 import Typography from '@/components/Typography'
 import Grid from '@/components/Grid'
-import PosterImage from '@/components/PosterImage'
+import Image from '@/components/Image'
 import { Crew, Movie } from '@/interfaces/entities'
 
 import className from 'classnames/bind'
@@ -28,7 +28,7 @@ const MovieDetail = (props: MovieDetailProps) => {
   return (
     <div className={cx('root')} style={{ backgroundImage: `url(${getImageUrl(movie?.backdrop_path || "", 1920, 800)})` }}>
       <Container className={cx('container')}>
-        <PosterImage src={movie?.poster_path} alt={movie?.title || ""} width={300} height={450} />
+        <Image path={movie?.poster_path} alt={movie?.title || ""} width={300} height={450} />
         <div className={cx('main')}>
           <Typography component="h1" fontSize={32} fontWeight={700}>{movie?.title}</Typography>
           <Typography fontSize={12}>{movie?.release_date} {movie?.genres?.map(el => el.name).join(', ')} {getHourMinutes(movie?.runtime || 0)}</Typography>

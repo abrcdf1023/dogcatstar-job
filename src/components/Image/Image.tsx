@@ -1,34 +1,35 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 
-import Image, { ImageProps } from "next/image";
 import shimmer from "@/utils/shimmer";
 import toBase64 from "@/utils/toBase64";
 import getImageUrl from "@/utils/getImageUrl";
+
+import NextImage, { ImageProps as NextImageProps } from "next/image";
 import notfoundImage from "./image-not-found.jpg";
 
-export interface PosterImageProps extends Omit<ImageProps, "src"> {
-  src?: string | null;
+export interface ImageProps extends Omit<NextImageProps, "src"> {
+  path?: string | null;
   width?: number;
   height?: number;
 }
 
-const PosterImage = (props: PosterImageProps) => {
-  const { src, alt, width = 220, height = 330, ...other } = props;
-  const [error, setError] = React.useState(!src);
+const Image = (props: ImageProps) => {
+  const { path, alt, width = 220, height = 330, ...other } = props;
+  const [error, setError] = React.useState(!path);
 
   const handleError = () => {
     setError(true);
   };
   
   return (
-    <Image
+    <NextImage
       loading="lazy"
       src={
-        (error || !src)
+        (error || !path)
           ? notfoundImage
-          : getImageUrl(src, width, height)
+          : getImageUrl(path, width, height)
       }
       width={width}
       height={height}
@@ -40,4 +41,4 @@ const PosterImage = (props: PosterImageProps) => {
   );
 };
 
-export default PosterImage;
+export default Image;

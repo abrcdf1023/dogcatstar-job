@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import Link from 'next/link'
 import Typography from '@/components/Typography'
-import PosterImage from '@/components/PosterImage'
+import Image from '@/components/Image'
 
 import className from 'classnames/bind'
 import styles from './MoveCard.module.css'
@@ -22,7 +22,7 @@ const MoveCard = (props: MoveCardProps) => {
   return (
     <div className={cx('root', className)}>
       <Link href={href}>
-        <PosterImage className={cx('img')} src={posterPath} alt={title} />
+        <Image className={cx('img')} path={posterPath} alt={title} />
       </Link>
       <div className={cx('card-body')}>
         <Typography>{title}</Typography>
