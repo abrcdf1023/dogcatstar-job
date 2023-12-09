@@ -1,6 +1,6 @@
 .root {
   width: 100%;
-  background-color: rgba(3, 37, 65);
+  background-color: var(--primary);
 }
 
 .content {
