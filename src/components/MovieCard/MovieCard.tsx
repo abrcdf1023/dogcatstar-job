@@ -5,20 +5,26 @@ import { Movie } from '@/interfaces/entities'
 
 import Typography from '../Typography'
 import Card from '../Card'
+import ButtonBase, { ButtonBaseProps } from '../ButtonBase'
 
 import className from 'classnames/bind'
 import styles from './MovieCard.module.css'
-import ButtonBase from '../ButtonBase'
 const cx = className.bind(styles)
 
 export interface MovieCardProps extends React.HTMLAttributes<HTMLDivElement>{
   movie?: Movie
+  onDelete?: (el?: Movie) => void
 }
 
 const MovieCard = (props: MovieCardProps) => {
-  const { className, movie, ...other } = props
+  const { className, movie, onDelete, ...other } = props
+
+  const handleClick = (movie?: Movie): ButtonBaseProps['onClick'] => (e) => {
+    onDelete?.(movie)
+  }
+
   return (
-    <Card className={cx('root', className)} {...other}>
+    <Card className={cx('root', className)} direction='row' {...other}>
       <Image width={150} height={225} path={movie?.poster_path} alt={movie?.title || ''} />
       <div className={cx('card-body')}>
         <Typography component="h3" fontSize={24} fontWeight={700}>{movie?.title}</Typography>
@@ -26,7 +32,7 @@ const MovieCard = (props: MovieCardProps) => {
         <div className={cx('overview')}>
           <Typography>{movie?.overview}</Typography>
         </div>
-        <ButtonBase className={cx('btn')}>Remove</ButtonBase>
+        <ButtonBase className={cx('btn')} onClick={handleClick(movie)}>Remove</ButtonBase>
       </div>
     </Card>
   )
