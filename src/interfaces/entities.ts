@@ -3,16 +3,25 @@ export interface ListResponse<T> {
   results: T[];
 }
 
+export interface Genre {
+  id: 35;
+  name: string
+}
+
 export interface Movie {
   id: number;
   adult?: boolean;
-  overview?: string;
   popularity?: number;
   poster_path?: string | null;
+  backdrop_path?: string | null;
   release_date?: string;
   title?: string;
   vote_average?: number;
   vote_count?: number;
+  runtime?: number;
+  genres?: Genre[];
+  overview?: string;
+  tagline?: string;
 }
 
 export interface Cast {
