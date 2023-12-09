@@ -32,7 +32,7 @@ const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
       className={cx(styles.root, className)}
       style={{
         "--font-size": parseToPx(fontSize),
-        "--font-weight": parseToPx(fontWeight),
+        "--font-weight": fontWeight,
         "--color": `var(--${color})`,
         ...style,
       }}
