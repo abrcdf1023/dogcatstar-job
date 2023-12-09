@@ -5,10 +5,13 @@ import React from "react";
 import Image, { ImageProps } from "next/image";
 import shimmer from "@/utils/shimmer";
 import toBase64 from "@/utils/toBase64";
+import getImageUrl from "@/utils/getImageUrl";
 import notfoundImage from "./image-not-found.jpg";
 
 export interface PosterImageProps extends Omit<ImageProps, "src"> {
   src?: string | null;
+  width?: number;
+  height?: number;
 }
 
 const PosterImage = (props: PosterImageProps) => {
@@ -18,14 +21,14 @@ const PosterImage = (props: PosterImageProps) => {
   const handleError = () => {
     setError(true);
   };
-
+  
   return (
     <Image
       loading="lazy"
       src={
-        error
+        (error || !src)
           ? notfoundImage
-          : `https://www.themoviedb.org/t/p/w220_and_h330_face${src}`
+          : getImageUrl(src, width, height)
       }
       width={width}
       height={height}
