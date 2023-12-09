@@ -10,15 +10,15 @@ import classNames from 'classnames/bind'
 import styles from './MovieCasts.module.css'
 const cx = classNames.bind(styles)
 
-export interface MovieCreditsProps {
+export interface MovieCreditsProps extends React.HTMLAttributes<HTMLDivElement> {
   casts?: Cast[]   
 }
 
 const MovieCasts = (props: MovieCreditsProps) => {
-  const { casts } = props
+  const { casts, className, ...other } = props
   
   return (
-    <>
+    <div className={cx('root', className)} {...other}>
       <Typography component="h1" fontSize={24} fontWeight={700} style={{ paddingLeft: 8 }}>Top Billed Cast</Typography>
       <div className={cx('list')}>
         {casts?.map(el => (
@@ -31,7 +31,7 @@ const MovieCasts = (props: MovieCreditsProps) => {
           </Card>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
