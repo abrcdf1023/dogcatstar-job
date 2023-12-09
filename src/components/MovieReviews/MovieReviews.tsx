@@ -26,6 +26,7 @@ const MovieReviews = (props: MovieReviewsProps) => {
           </div>
         </Card>
       ))}
+      {reviews?.results.length === 0 && <Typography component="h3" fontSize={24} fontWeight={700}>No reviews found</Typography>}
     </div>
   )
 }
