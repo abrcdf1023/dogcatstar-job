@@ -1,10 +1,10 @@
 .root {
+  padding-top: 24px;
 }
 
-.root .container {
+.container {
   display: flex;
   flex-direction: column;
-  padding-top: 24px !important;
 }
 
 .search {

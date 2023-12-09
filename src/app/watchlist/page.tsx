@@ -9,7 +9,10 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import Container from "@/components/Container";
 import MovieCard, { MovieCardProps } from "@/components/MovieCard";
 
+import classNames from "classnames/bind";
 import styles from "./page.module.css";
+
+const cx = classNames.bind(styles);
 
 export default function Watchlist() {
   const [watchlist, setWatchList] = useLocalStorage<Movie[]>(WATCH_LIST_KEY, [])
@@ -21,8 +24,10 @@ export default function Watchlist() {
   }
   
   return (
-    <Container className={styles.root}>
-      {watchlist.map((el) => (<MovieCard key={el.id} movie={el} onDelete={handleDelete} />))}
-    </Container>
+    <div className={cx('root')}>
+      <Container>
+        {watchlist.map((el) => (<MovieCard key={el.id} movie={el} onDelete={handleDelete} />))}
+      </Container>
+    </div>
   );
 }

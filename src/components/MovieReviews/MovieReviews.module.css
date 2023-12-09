@@ -4,10 +4,10 @@
   gap: 16px;
 }
 
-.review-card {
+.root .card {
   padding: 20px;
 }
 
-.review-card-body {
+.card-body {
   margin-top: 20px;
 }

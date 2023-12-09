@@ -14,7 +14,7 @@
   margin: 20px 0;
 }
 
-.btn {
+.root .btn {
   padding: 8px;
   border-radius: 8px;
   background-color: var(--secondary);

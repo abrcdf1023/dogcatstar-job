@@ -19,9 +19,9 @@ const MovieReviews = (props: MovieReviewsProps) => {
   return (
     <div className={cx('root', className)} {...other}>
       {reviews?.results.map(el => (
-        <Card key={el.id} className={cx('review-card')}>
+        <Card key={el.id} className={cx('card')}>
           <Typography component="h3" fontSize={24} fontWeight={700}>A review by {el.author}</Typography>
-          <div className={cx('review-card-body')}>
+          <div className={cx('card-body')}>
             <Typography>{el.content}</Typography>
           </div>
         </Card>

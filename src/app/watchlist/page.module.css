@@ -1,8 +1,4 @@
 .root {
-  /**
-  * Need !important to avoid a bug in Next.js. Consider refactoring css modules to styled-components.
-  * https://github.com/vercel/next.js/issues/16630
-  **/
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
