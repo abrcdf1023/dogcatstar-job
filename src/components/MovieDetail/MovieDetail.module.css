@@ -38,6 +38,13 @@
   padding-left: 40px;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .overview {
   margin-top: 20px;
 }

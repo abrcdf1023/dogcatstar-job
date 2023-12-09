@@ -1,21 +1,20 @@
 import * as React from 'react'
 
 import getImageUrl from '@/utils/getImageUrl'
+import getHourMinutes from '@/utils/getHourMinutes'
 
 import Container from '@/components/Container'
 import Typography from '@/components/Typography'
 import Grid from '@/components/Grid'
 import Image from '@/components/Image'
+import ButtonAddToWatchList from '@/components/ButtonAddToWatchList'
 import { Crew, Movie } from '@/interfaces/entities'
 
 import className from 'classnames/bind'
 import styles from './MovieDetail.module.css'
 const cx = className.bind(styles)
 
-const getHourMinutes = (minutes: number) => {
-  const date = new Date(0, 0, 0, 0, minutes)
-  return `${date.getHours()}h ${date.getMinutes()}m`
-}
+
 export interface MovieDetailProps {
   movie?: Movie
   directors?: Crew[]
@@ -32,6 +31,10 @@ const MovieDetail = (props: MovieDetailProps) => {
         <div className={cx('main')}>
           <Typography component="h1" fontSize={32} fontWeight={700}>{movie?.title}</Typography>
           <Typography fontSize={12}>{movie?.release_date} {movie?.genres?.map(el => el.name).join(', ')} {getHourMinutes(movie?.runtime || 0)}</Typography>
+          <div className={cx('actions')}>
+            User Score: {Math.round((movie?.vote_average || 0) * 10)}% <br />
+            <ButtonAddToWatchList className={cx('btn', 'btn-add-to-watchlist')} movie={movie} />
+          </div>
           <div className={cx('overview')}>
             <Typography color='text-secondary' style={{ fontStyle: 'italic' }}>{movie?.tagline}</Typography>
             <Typography fontSize={24} style={{ marginTop: 10, marginBottom: 8 }}>Overview</Typography>

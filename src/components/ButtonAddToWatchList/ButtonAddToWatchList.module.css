@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-image: url(https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-white-432e98d550b7e4c80b06272c49475b0db85a60f6fae450420713004b3c9d3ffd.svg);
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
+
+.active {
+  background-image: url(https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-selected-ddcb9a1fcb04650d6879314313b71e397521c2e41e07b1405b30d4244deb52f8.svg);
+}
