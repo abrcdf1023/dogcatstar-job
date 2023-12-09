@@ -63,12 +63,14 @@ const HomeLayout = ({ children }: LayoutProps) => {
   }
 
   return (
-    <Container className={cx('root')}>
-      <div className={styles.search}>
-        <SearchBar onChange={handleSearchChange} />
-      </div>
-      {renderList()}
-    </Container>
+    <div className={cx('root')}>
+      <Container className={cx('container')}>
+        <div className={styles.search}>
+          <SearchBar onChange={handleSearchChange} />
+        </div>
+        {renderList()}
+      </Container>
+    </div>
   )
 }
 
