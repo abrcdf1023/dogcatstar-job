@@ -9,6 +9,7 @@ export interface TypographyProps {
   className?: string;
   fontSize?: number | string;
   fontWeight?: number;
+  align?: "left" | "center" | "right";
   color?: string;
   component?: React.ElementType;
   style?: React.CSSProperties;
@@ -21,6 +22,7 @@ const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
     fontSize = 14,
     fontWeight = 500,
     color = 'text-primary',
+    align,
     style,
     ...other
   } = props;
@@ -34,6 +36,7 @@ const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
         "--font-size": parseToPx(fontSize),
         "--font-weight": fontWeight,
         "--color": `var(--${color})`,
+        "--align": align,
         ...style,
       }}
       {...other}
