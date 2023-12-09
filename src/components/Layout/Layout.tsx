@@ -8,7 +8,7 @@ import { ListResponse, Movie } from '@/interfaces/entities'
 
 import Container from '@/components/Container'
 import SearchBar from '@/components/SearchBar'
-import MoveCard from '@/components/MoveCard'
+import MovieSimpleCard from '@/components/MovieSimpleCard'
 import Grid from '@/components/Grid'
 import Skeleton from '@/components/Skeleton'
 
@@ -45,7 +45,7 @@ const Layout = ({ children }: LayoutProps) => {
         <Grid container>
           {data.results.map((el) => (
             <Grid key={el.id}>
-              <MoveCard
+              <MovieSimpleCard
                 href={`/movie/${el.id}`}
                 title={el.title}
                 posterPath={el.poster_path}

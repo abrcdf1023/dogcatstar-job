@@ -3,7 +3,7 @@ import * as React from "react";
 import fetchPopularList from "@/apis/fetchPopularList";
 
 import Layout from "@/components/Layout";
-import MoveCard from "@/components/MoveCard";
+import MovieSimpleCard from "@/components/MovieSimpleCard";
 import Grid from "@/components/Grid";
 
 export default async function Home() {
@@ -14,7 +14,7 @@ export default async function Home() {
       <Grid container>
         {data.results.map((el) => (
           <Grid key={el.id}>
-            <MoveCard
+            <MovieSimpleCard
               href={`/movie/${el.id}`}
               title={el.title}
               posterPath={el.poster_path}

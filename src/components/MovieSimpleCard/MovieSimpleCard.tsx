@@ -6,7 +6,7 @@ import Typography from '@/components/Typography'
 import Image from '@/components/Image'
 
 import className from 'classnames/bind'
-import styles from './MoveCard.module.css'
+import styles from './MovieSimpleCard.module.css'
 const cx = className.bind(styles)
     
 export interface MoveCardProps {
@@ -17,7 +17,7 @@ export interface MoveCardProps {
   releaseDate?: string
 }
 
-const MoveCard = (props: MoveCardProps) => {
+const MovieSimpleCard = (props: MoveCardProps) => {
   const { className, title = "", posterPath, releaseDate, href } = props
   
   return (
@@ -33,4 +33,4 @@ const MoveCard = (props: MoveCardProps) => {
   )
 }
 
-export default MoveCard
+export default MovieSimpleCard
