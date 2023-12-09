@@ -6,6 +6,7 @@ import fetchMovieReviews from "@/apis/fetchMovieReviews";
 
 import Container from "@/components/Container";
 import Typography from "@/components/Typography";
+import MovieDetail from '@/components/MovieDetail'
 
 type Params = { params: { movieId: string } }
 
@@ -13,11 +14,11 @@ export default async function Movie({ params: { movieId } }: Params) {
   const detail = await fetchMovieDetail(movieId);
   const credits = await fetchMovieCredits(movieId);
   const reviews = await fetchMovieReviews(movieId);
-  const director = credits.crew.find((member) => member.job === "Director");
-  console.log(JSON.stringify(reviews))
+  const directors = credits.crew.filter((member) => member.job === "Director");
+  const writers = credits.crew.filter((member) => member.job === "Writer");
+  
+  console.log(writers)
   return (
-    <Container>
-      <Typography component="h1">{detail.title}</Typography>
-    </Container>
+    <MovieDetail movie={detail} directors={directors} writers={writers} />
   );
 }
