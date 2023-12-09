@@ -5,7 +5,7 @@ import { Movie } from '@/interfaces/entities'
 
 import Typography from '../Typography'
 import Card from '../Card'
-import ButtonBase, { ButtonBaseProps } from '../ButtonBase'
+import Button, { ButtonProps } from '../Button'
 
 import className from 'classnames/bind'
 import styles from './MovieCard.module.css'
@@ -19,7 +19,7 @@ export interface MovieCardProps extends React.HTMLAttributes<HTMLDivElement>{
 const MovieCard = (props: MovieCardProps) => {
   const { className, movie, onDelete, ...other } = props
 
-  const handleClick = (movie?: Movie): ButtonBaseProps['onClick'] => (e) => {
+  const handleClick = (movie?: Movie): ButtonProps['onClick'] => (e) => {
     onDelete?.(movie)
   }
 
@@ -32,7 +32,7 @@ const MovieCard = (props: MovieCardProps) => {
         <div className={cx('overview')}>
           <Typography>{movie?.overview}</Typography>
         </div>
-        <ButtonBase className={cx('btn')} onClick={handleClick(movie)}>Remove</ButtonBase>
+        <Button fullWidth onClick={handleClick(movie)}>Remove</Button>
       </div>
     </Card>
   )

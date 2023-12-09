@@ -13,11 +13,3 @@
 .overview {
   margin: 20px 0;
 }
-
-.root .btn {
-  padding: 8px;
-  border-radius: 8px;
-  background-color: var(--secondary);
-  color: var(--white);
-  width: 100%;
-}
