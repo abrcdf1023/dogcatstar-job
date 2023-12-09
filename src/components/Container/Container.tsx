@@ -1,16 +1,17 @@
 import * as React from 'react'
 
-import cx from 'classnames'
+import className from 'classnames/bind'
 import styles from './Container.module.css'
+const cx = className.bind(styles)
 
 export interface ContainerProps {
   className?: string
 }
 
 const Container = (props: React.PropsWithChildren<ContainerProps>) => {
-  const { className } = props
+  const { className, ...other } = props
   return (
-    <div className={cx(styles.root, className)} {...props}></div>
+    <div className={cx('root', className)} {...other} />
   )
 }
 
