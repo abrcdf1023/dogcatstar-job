@@ -33,7 +33,7 @@ const MovieDetail = (props: MovieDetailProps) => {
           <Typography fontSize={12}>{movie?.release_date} {movie?.genres?.map(el => el.name).join(', ')} {getHourMinutes(movie?.runtime || 0)}</Typography>
           <div className={cx('actions')}>
             User Score: {Math.round((movie?.vote_average || 0) * 10)}% <br />
-            <ButtonAddToWatchList className={cx('btn', 'btn-add-to-watchlist')} movie={movie} />
+            <ButtonAddToWatchList movie={movie} />
           </div>
           <div className={cx('overview')}>
             <Typography color='text-secondary' style={{ fontStyle: 'italic' }}>{movie?.tagline}</Typography>
