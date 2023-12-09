@@ -1,0 +1,27 @@
+.root {
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f44336;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
