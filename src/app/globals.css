@@ -8,7 +8,10 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  --text-primary: #ffffff;
+
   --black: #000000;
+  --white: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
