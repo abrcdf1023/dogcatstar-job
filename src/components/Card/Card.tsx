@@ -4,12 +4,17 @@ import classNames from 'classnames/bind'
 import styles from './Card.module.css'
 const cx = classNames.bind(styles)
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  direction?: 'row' | 'column'
+}
 
 const Card = (props: CardProps) => {
-  const { className, ...other } = props
+  const { className, direction='column', ...other } = props
+  
   return (
-    <div className={cx('root', className)} {...other}/>
+    <div className={cx('root', {
+      row: direction === 'row'
+    }, className)} {...other}/>
   )
 }
 
