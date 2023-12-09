@@ -1,0 +1,17 @@
+.root {
+  width: 100%;
+  background-color: rgba(3, 37, 65);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  padding: 0 8px;
+  color: var(--white);
+}
+
+.logo {
+  flex-grow: 1;
+}
