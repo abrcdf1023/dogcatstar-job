@@ -5,8 +5,10 @@ import fetchMovieCredits from "@/apis/fetchMovieCredits";
 import fetchMovieReviews from "@/apis/fetchMovieReviews";
 
 import Container from "@/components/Container";
-import Typography from "@/components/Typography";
 import MovieDetail from '@/components/MovieDetail'
+import MovieCasts from '@/components/MovieCasts'
+
+import styles from "./page.module.css";
 
 type Params = { params: { movieId: string } }
 
@@ -17,8 +19,14 @@ export default async function Movie({ params: { movieId } }: Params) {
   const directors = credits.crew.filter((member) => member.job === "Director");
   const writers = credits.crew.filter((member) => member.job === "Writer");
   
-  console.log(writers)
   return (
-    <MovieDetail movie={detail} directors={directors} writers={writers} />
+    <>
+      <MovieDetail movie={detail} directors={directors} writers={writers} />
+      <div className={styles.scetion}>
+        <Container>
+          <MovieCasts casts={credits.cast} />
+        </Container>
+      </div>
+    </>
   );
 }
