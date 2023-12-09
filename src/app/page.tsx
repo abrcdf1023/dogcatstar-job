@@ -2,7 +2,7 @@ import * as React from "react";
 
 import fetchPopularList from "@/apis/fetchPopularList";
 
-import Layout from "@/components/Layout";
+import HomeLayout from "@/components/HomeLayout";
 import MovieSimpleCard from "@/components/MovieSimpleCard";
 import Grid from "@/components/Grid";
 
@@ -10,7 +10,7 @@ export default async function Home() {
   const data = await fetchPopularList();
 
   return (
-    <Layout>
+    <HomeLayout>
       <Grid container>
         {data.results.map((el) => (
           <Grid key={el.id}>
@@ -23,6 +23,6 @@ export default async function Home() {
           </Grid>
         ))}
       </Grid>
-    </Layout>
+    </HomeLayout>
   );
 }

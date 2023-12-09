@@ -12,13 +12,16 @@ import MovieSimpleCard from '@/components/MovieSimpleCard'
 import Grid from '@/components/Grid'
 import Skeleton from '@/components/Skeleton'
 
-import styles from './Layout.module.css'
+import classNames from 'classnames/bind'
+import styles from './HomeLayout.module.css'
+
+const cx = classNames.bind(styles)
 
 export interface LayoutProps {
   children?: React.ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const HomeLayout = ({ children }: LayoutProps) => {
   const [query, setQuery] = React.useState('')
   const [page, setPage] = React.useState(1)
   const debounceQuery = useDebounce(query, 500)
@@ -60,15 +63,13 @@ const Layout = ({ children }: LayoutProps) => {
   }
 
   return (
-    <Container>
-      <main className={styles.main}>
-        <div className={styles.search}>
-          <SearchBar onChange={handleSearchChange} />
-        </div>
-        {renderList()}
-      </main>
+    <Container className={cx('root')}>
+      <div className={styles.search}>
+        <SearchBar onChange={handleSearchChange} />
+      </div>
+      {renderList()}
     </Container>
   )
 }
 
-export default Layout
+export default HomeLayout
