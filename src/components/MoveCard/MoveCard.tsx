@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import Link from 'next/link'
+import Card from '@/components/Card'
 import Typography from '@/components/Typography'
 import Image from '@/components/Image'
 
@@ -20,7 +21,7 @@ const MoveCard = (props: MoveCardProps) => {
   const { className, title = "", posterPath, releaseDate, href } = props
   
   return (
-    <div className={cx('root', className)}>
+    <Card className={cx('root', className)}>
       <Link href={href}>
         <Image className={cx('img')} path={posterPath} alt={title} />
       </Link>
@@ -28,7 +29,7 @@ const MoveCard = (props: MoveCardProps) => {
         <Typography>{title}</Typography>
         <Typography>{releaseDate}</Typography>
       </div>
-    </div>
+    </Card>
   )
 }
 
