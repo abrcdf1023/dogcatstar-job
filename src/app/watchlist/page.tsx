@@ -26,7 +26,9 @@ export default function Watchlist() {
   return (
     <div className={cx('root')}>
       <Container>
-        {watchlist.map((el) => (<MovieCard key={el.id} movie={el} onDelete={handleDelete} />))}
+        <div className={cx('list')}>
+          {watchlist.map((el) => (<MovieCard key={el.id} movie={el} onDelete={handleDelete} />))}
+        </div>
       </Container>
     </div>
   );
