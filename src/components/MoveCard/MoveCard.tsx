@@ -25,8 +25,8 @@ const MoveCard = (props: MoveCardProps) => {
         <PosterImage className={cx('img')} src={posterPath} alt={title} />
       </Link>
       <div className={cx('card-body')}>
-        <Typography color='black'>{title}</Typography>
-        <Typography color='black'>{releaseDate}</Typography>
+        <Typography>{title}</Typography>
+        <Typography>{releaseDate}</Typography>
       </div>
     </div>
   )
