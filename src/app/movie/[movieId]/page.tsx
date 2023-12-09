@@ -7,6 +7,7 @@ import fetchMovieReviews from "@/apis/fetchMovieReviews";
 import Container from "@/components/Container";
 import MovieDetail from '@/components/MovieDetail'
 import MovieCasts from '@/components/MovieCasts'
+import MovieReviews from '@/components/MovieReviews'
 
 import styles from "./page.module.css";
 
@@ -25,6 +26,7 @@ export default async function Movie({ params: { movieId } }: Params) {
       <div className={styles.scetion}>
         <Container>
           <MovieCasts casts={credits.cast} />
+          <MovieReviews className={styles.reviews} reviews={reviews} />
         </Container>
       </div>
     </>

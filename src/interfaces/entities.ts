@@ -69,3 +69,11 @@ export interface AuthorDetails {
   avatar_path?: null;
   rating?: number;
 }
+
+export interface Reviews {
+  id: number;
+  page: number;
+  results: Author[];
+  total_pages: number;
+  total_results: number;
+}
