@@ -4,8 +4,33 @@ export interface ListResponse<T> {
 }
 
 export interface Genre {
-  id: 35;
-  name: string
+  id: number;
+  name: string;
+}
+
+export interface BelongsToCollection {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
+
+export interface ProductionCompany {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+export interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+export interface SpokenLanguage {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
 }
 
 export interface Movie {
@@ -22,6 +47,22 @@ export interface Movie {
   genres?: Genre[];
   overview?: string;
   tagline?: string;
+  belongs_to_collection?: BelongsToCollection;
+  budget?: number;
+  homepage?: string;
+  imdb_id?: string;
+  original_language?: string;
+  original_title?: string;
+  production_companies?: ProductionCompany[];
+  production_countries?: ProductionCountry[];
+  revenue?: number;
+  spoken_languages?: SpokenLanguage[];
+  status?: string;
+  video?: boolean;
+}
+
+export interface PendingWatchMovie extends Movie {
+  timeAddedToWatch: number
 }
 
 export interface Cast {
