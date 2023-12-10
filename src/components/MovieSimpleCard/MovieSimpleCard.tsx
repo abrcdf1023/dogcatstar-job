@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import Link from 'next/link'
-import Card from '@/components/Card'
-import Typography from '@/components/Typography'
-import Image from '@/components/Image'
+import Card from '../Card'
+import Typography from '../Typography'
+import Image from '../Image'
 
 import className from 'classnames/bind'
 import styles from './MovieSimpleCard.module.css'

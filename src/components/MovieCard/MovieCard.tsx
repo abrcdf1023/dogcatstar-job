@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Image from '@/components/Image'
 import { Movie } from '@/interfaces/entities'
 
+import Image from '../Image'
 import Typography from '../Typography'
 import Card from '../Card'
 import Button, { ButtonProps } from '../Button'

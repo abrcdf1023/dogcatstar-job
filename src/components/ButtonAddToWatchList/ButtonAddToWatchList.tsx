@@ -4,9 +4,9 @@ import * as React from 'react'
 
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { WATCH_LIST_KEY } from '@/utils/localStarageKeys'
-import { Movie } from '@/interfaces/entities'
+import { Movie, PendingWatchMovie } from '@/interfaces/entities'
 
-import ButtonBase, { ButtonBaseProps } from '@/components/ButtonBase'
+import ButtonBase, { ButtonBaseProps } from '../ButtonBase'
 
 import className from 'classnames/bind'
 import styles from './ButtonAddToWatchList.module.css'
@@ -18,7 +18,7 @@ export interface ButtonAddToWatchListProps extends ButtonBaseProps {
 
 const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
   const { className, movie, onClick, ...other } = props
-  const [watchlist, setWatchList] = useLocalStorage<Movie[]>(WATCH_LIST_KEY, [])
+  const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, [])
   const active = movie && watchlist.findIndex(el => el.id === movie.id) !== -1
 
   const handleAddToWatchList: ButtonAddToWatchListProps['onClick'] = (e) => {
@@ -27,7 +27,7 @@ const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
     setWatchList((list) => {
       const movieIndex = list.findIndex(el => el.id === movie.id)
       if (movieIndex === -1) {
-        return [...list, movie as Movie]
+        return [...list, { ...movie, timeAddedToWatch: new Date().getTime() } as PendingWatchMovie]
       }
       return list.filter(el => el.id !== movie.id)
     })
