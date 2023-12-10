@@ -25,12 +25,15 @@ export const MovieCard = (props: MovieCardProps) => {
 
   return (
     <Card className={cx('root', className)} direction='row' {...other}>
-      <Image width={150} height={225} path={movie?.poster_path} alt={movie?.title || ''} />
+      <Image width={150} height={225} path={movie?.poster_path} alt={movie?.title || ''} source='bestv2' />
       <div className={cx('card-body')}>
         <Typography component="h3" fontSize={24} fontWeight={700}>{movie?.title}</Typography>
         <Typography fontSize={12} color="text-secondary">{movie?.release_date}</Typography>
         <div className={cx('overview')}>
           <Typography>{movie?.overview}</Typography>
+        </div>
+        <div className={cx('info')}>
+          <Typography fontSize={12} color="text-secondary">Popularity: {movie?.popularity}</Typography>
         </div>
         <Button fullWidth onClick={handleClick(movie)}>Remove</Button>
       </div>
