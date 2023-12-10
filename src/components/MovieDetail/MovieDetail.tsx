@@ -25,9 +25,9 @@ export const MovieDetail = (props: MovieDetailProps) => {
   const { movie, directors, writers } = props
   
   return (
-    <div className={cx('root')} style={{ backgroundImage: `url(${getImageUrl(movie?.backdrop_path || "", 1920, 800)})` }}>
+    <div className={cx('root')} style={{ backgroundImage: `url(${getImageUrl(movie?.backdrop_path || "", 1920, 800, 'multi_faces')})` }}>
       <Container className={cx('container')}>
-        <Image path={movie?.poster_path} alt={movie?.title || ""} width={300} height={450} />
+        <Image path={movie?.poster_path} alt={movie?.title || ""} width={300} height={450} source='bestv2' />
         <div className={cx('main')}>
           <Typography component="h1" fontSize={32} fontWeight={700}>{movie?.title}</Typography>
           <Typography fontSize={12}>{movie?.release_date} {movie?.genres?.map(el => el.name).join(', ')} {getHourMinutes(movie?.runtime || 0)}</Typography>

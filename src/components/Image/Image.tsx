@@ -4,7 +4,7 @@ import * as React from "react";
 
 import shimmer from "@/utils/shimmer";
 import toBase64 from "@/utils/toBase64";
-import getImageUrl from "@/utils/getImageUrl";
+import getImageUrl, { Source } from "@/utils/getImageUrl";
 
 import NextImage, { ImageProps as NextImageProps } from "next/image";
 import notfoundImage from "./image-not-found.jpg";
@@ -13,10 +13,11 @@ export interface ImageProps extends Omit<NextImageProps, "src"> {
   path?: string | null;
   width?: number;
   height?: number;
+  source?: Source
 }
 
 export const Image = (props: ImageProps) => {
-  const { path, alt, width = 220, height = 330, ...other } = props;
+  const { path, alt, width = 220, height = 330, source = 'face', ...other } = props;
   const [error, setError] = React.useState(!path);
 
   const handleError = () => {
@@ -29,7 +30,7 @@ export const Image = (props: ImageProps) => {
       src={
         (error || !path)
           ? notfoundImage
-          : getImageUrl(path, width, height)
+          : getImageUrl(path, width, height, source)
       }
       width={width}
       height={height}
