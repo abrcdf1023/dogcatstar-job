@@ -21,7 +21,7 @@ export interface MovieDetailProps {
   writers?: Crew[]
 }
 
-const MovieDetail = (props: MovieDetailProps) => {
+export const MovieDetail = (props: MovieDetailProps) => {
   const { movie, directors, writers } = props
   
   return (
@@ -63,5 +63,3 @@ const MovieDetail = (props: MovieDetailProps) => {
     </div>
   )
 }
-
-export default MovieDetail

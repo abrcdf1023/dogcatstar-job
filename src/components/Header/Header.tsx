@@ -7,7 +7,7 @@ import styles from './Header.module.css'
 
 const cx = className.bind(styles)
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className={cx('root')}>
       <div className={cx('content')}>
@@ -19,5 +19,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header

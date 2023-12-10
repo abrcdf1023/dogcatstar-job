@@ -13,7 +13,7 @@ export interface ErrorPageProps {
   onClick: () => void
 }
 
-const ErrorPage = (props: ErrorPageProps) => {
+export const ErrorPage = (props: ErrorPageProps) => {
   const { onClick } = props
 
   return (
@@ -25,5 +25,3 @@ const ErrorPage = (props: ErrorPageProps) => {
     </div>
   )
 }
-
-export default ErrorPage

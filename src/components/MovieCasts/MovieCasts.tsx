@@ -14,7 +14,7 @@ export interface MovieCreditsProps extends React.HTMLAttributes<HTMLDivElement> 
   casts?: Cast[]   
 }
 
-const MovieCasts = (props: MovieCreditsProps) => {
+export const MovieCasts = (props: MovieCreditsProps) => {
   const { casts, className, ...other } = props
   
   return (
@@ -34,5 +34,3 @@ const MovieCasts = (props: MovieCreditsProps) => {
     </div>
   )
 }
-
-export default MovieCasts

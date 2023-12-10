@@ -15,7 +15,7 @@ export interface TypographyProps {
   style?: React.CSSProperties;
 }
 
-const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
+export const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
   const {
     className,
     component = "p",
@@ -43,5 +43,3 @@ const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
     />
   );
 };
-
-export default Typography;

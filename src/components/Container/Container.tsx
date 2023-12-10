@@ -8,11 +8,9 @@ export interface ContainerProps {
   className?: string
 }
 
-const Container = (props: React.PropsWithChildren<ContainerProps>) => {
+export const Container = (props: React.PropsWithChildren<ContainerProps>) => {
   const { className, ...other } = props
   return (
     <div className={cx('root', className)} {...other} />
   )
 }
-
-export default Container

@@ -13,7 +13,7 @@ export interface MovieReviewsProps extends React.HTMLAttributes<HTMLDivElement> 
   reviews?: Reviews
 }
 
-const MovieReviews = (props: MovieReviewsProps) => {
+export const MovieReviews = (props: MovieReviewsProps) => {
   const { className, reviews, ...other } = props
 
   return (
@@ -30,5 +30,3 @@ const MovieReviews = (props: MovieReviewsProps) => {
     </div>
   )
 }
-
-export default MovieReviews

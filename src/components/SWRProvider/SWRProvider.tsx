@@ -7,7 +7,7 @@ import ErrorToast from "../ErrorToast";
 
 export interface SWRProviderProps {}
 
-const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) => {
+export const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) => {
   const { children } = props;
   const [showError, setShowError] = React.useState(false)
   const timer = React.useRef<NodeJS.Timeout>()
@@ -33,5 +33,3 @@ const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) => {
     </SWRConfig>
   );
 };
-
-export default SWRProvider;

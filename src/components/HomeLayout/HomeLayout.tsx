@@ -21,7 +21,7 @@ export interface LayoutProps {
   children?: React.ReactNode
 }
 
-const HomeLayout = ({ children }: LayoutProps) => {
+export const HomeLayout = ({ children }: LayoutProps) => {
   const [query, setQuery] = React.useState('')
   const [page, setPage] = React.useState(1)
   const debounceQuery = useDebounce(query, 500)
@@ -73,5 +73,3 @@ const HomeLayout = ({ children }: LayoutProps) => {
     </div>
   )
 }
-
-export default HomeLayout

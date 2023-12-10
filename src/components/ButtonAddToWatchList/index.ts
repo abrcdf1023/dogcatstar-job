@@ -1,1 +1,1 @@
-export { default } from './ButtonAddToWatchList'
+export { ButtonAddToWatchList as default } from './ButtonAddToWatchList'

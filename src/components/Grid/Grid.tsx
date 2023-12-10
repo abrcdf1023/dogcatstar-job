@@ -9,12 +9,10 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   container?: boolean;
 }
 
-const Grid = (props: GridProps) => {
+export const Grid = (props: GridProps) => {
   const { className, container, ...other } = props;
   return <div className={cx(className, {
     [styles.item]: !container,
     [styles.container]: container,
   })} {...other} />
 };
-
-export default Grid;

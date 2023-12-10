@@ -7,12 +7,10 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement>{
   height?: number
 }
 
-const Skeleton = (props: SkeletonProps) => {
+export const Skeleton = (props: SkeletonProps) => {
   const { width = 200, height = 100, ...other } = props
 
   const svgHtml = React.useMemo(() => shimmer(width, height), [width, height])
 
   return <div dangerouslySetInnerHTML={{ __html: svgHtml }} {...other} />
 }
-
-export default Skeleton

@@ -1,1 +1,1 @@
-export { default } from './ErrorToast'
+export { ErrorToast as default } from './ErrorToast'

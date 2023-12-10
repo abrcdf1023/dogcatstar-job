@@ -5,12 +5,10 @@ import styles from './ErrorToast.module.css'
 
 const cx = classNames.bind(styles)
 
-const ErrorToast = () => {
+export const ErrorToast = () => {
   return (
     <div className={cx('root')}>
       Network Error. Please try again later.
     </div>
   )
 }
-
-export default ErrorToast

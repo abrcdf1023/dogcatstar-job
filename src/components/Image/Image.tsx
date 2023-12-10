@@ -15,7 +15,7 @@ export interface ImageProps extends Omit<NextImageProps, "src"> {
   height?: number;
 }
 
-const Image = (props: ImageProps) => {
+export const Image = (props: ImageProps) => {
   const { path, alt, width = 220, height = 330, ...other } = props;
   const [error, setError] = React.useState(!path);
 
@@ -40,5 +40,3 @@ const Image = (props: ImageProps) => {
     />
   );
 };
-
-export default Image;

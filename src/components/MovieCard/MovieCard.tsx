@@ -16,7 +16,7 @@ export interface MovieCardProps extends React.HTMLAttributes<HTMLDivElement>{
   onDelete?: (el?: Movie) => void
 }
 
-const MovieCard = (props: MovieCardProps) => {
+export const MovieCard = (props: MovieCardProps) => {
   const { className, movie, onDelete, ...other } = props
 
   const handleClick = (movie?: Movie): ButtonProps['onClick'] => (e) => {
@@ -37,5 +37,3 @@ const MovieCard = (props: MovieCardProps) => {
     </Card>
   )
 }
-
-export default MovieCard

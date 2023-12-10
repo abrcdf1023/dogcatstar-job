@@ -16,7 +16,7 @@ export interface ButtonAddToWatchListProps extends ButtonBaseProps {
   movie?: Movie
 }
 
-const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
+export const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
   const { className, movie, onClick, ...other } = props
   const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, [])
   const active = movie && watchlist.findIndex(el => el.id === movie.id) !== -1
@@ -37,5 +37,3 @@ const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
     <ButtonBase className={cx('root', active && 'active', className)} onClick={handleAddToWatchList} {...other} />
   )
 }
-
-export default ButtonAddToWatchList

@@ -1,1 +1,1 @@
-export { default } from './MovieCasts'
+export { MovieCasts as default } from './MovieCasts'

@@ -8,7 +8,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   direction?: 'row' | 'column'
 }
 
-const Card = (props: CardProps) => {
+export const Card = (props: CardProps) => {
   const { className, direction='column', ...other } = props
   
   return (
@@ -17,5 +17,3 @@ const Card = (props: CardProps) => {
     }, className)} {...other}/>
   )
 }
-
-export default Card

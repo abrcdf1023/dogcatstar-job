@@ -6,11 +6,9 @@ const cx = className.bind(styles)
 
 export interface ButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const ButtonBase = (props: ButtonBaseProps) => {
+export const ButtonBase = (props: ButtonBaseProps) => {
   const { className, ...other } = props
   return (
     <button className={cx('root', className)} {...other} />
   )
 }
-
-export default ButtonBase

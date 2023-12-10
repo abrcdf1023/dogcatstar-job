@@ -11,7 +11,7 @@ export interface ButtonProps extends ButtonBaseProps {
   fullWidth?: boolean
 }
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   const { className, fullWidth, ...other } = props
 
   return (
@@ -25,5 +25,3 @@ const Button = (props: ButtonProps) => {
     </div>
   )
 }
-
-export default Button

@@ -17,7 +17,7 @@ export interface MoveCardProps {
   releaseDate?: string
 }
 
-const MovieSimpleCard = (props: MoveCardProps) => {
+export const MovieSimpleCard = (props: MoveCardProps) => {
   const { className, title = "", posterPath, releaseDate, href } = props
   
   return (
@@ -32,5 +32,3 @@ const MovieSimpleCard = (props: MoveCardProps) => {
     </Card>
   )
 }
-
-export default MovieSimpleCard
