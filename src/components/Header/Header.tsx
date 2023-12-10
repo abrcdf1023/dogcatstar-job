@@ -12,7 +12,7 @@ const Header = () => {
     <header className={cx('root')}>
       <div className={cx('content')}>
         <Link href="/" className={cx('logo')}>
-          Dog Cat Stater
+          Dog Cat Star
         </Link>
         <Link href="/watchlist">Watch List</Link>
       </div>
