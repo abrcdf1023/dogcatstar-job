@@ -3,7 +3,7 @@ import * as React from "react";
 import cx from "classnames";
 import styles from "./Typography.module.css";
 
-const parseToPx = (v: number | string) => typeof v === "number" ? `${v}px` : v
+const parseToPx = (v: number | string) => (typeof v === "number" ? `${v}px` : v);
 
 export interface TypographyProps {
   className?: string;
@@ -21,7 +21,7 @@ export const Typography = (props: React.PropsWithChildren<TypographyProps>) => {
     component = "p",
     fontSize = 14,
     fontWeight = 500,
-    color = 'text-primary',
+    color = "text-primary",
     align,
     style,
     ...other

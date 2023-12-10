@@ -18,12 +18,8 @@ export interface ButtonAddToWatchListProps extends ButtonBaseProps {
 
 export const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
   const { className, movie, onClick, ...other } = props;
-  const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(
-    WATCH_LIST_KEY,
-    []
-  );
-  const active =
-    movie && watchlist.findIndex((el) => el.id === movie.id) !== -1;
+  const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, []);
+  const active = movie && watchlist.findIndex((el) => el.id === movie.id) !== -1;
 
   const handleAddToWatchList: ButtonAddToWatchListProps["onClick"] = (e) => {
     if (onClick) onClick(e);
@@ -36,9 +32,7 @@ export const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
           {
             ...movie,
             timeAddedToWatch: new Date().getTime(),
-            releaseDateTime: movie.release_date
-              ? new Date(movie.release_date).getTime()
-              : undefined,
+            releaseDateTime: movie.release_date ? new Date(movie.release_date).getTime() : undefined,
           } as PendingWatchMovie,
         ];
       }
@@ -46,11 +40,5 @@ export const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
     });
   };
 
-  return (
-    <ButtonBase
-      className={cx("root", active && "active", className)}
-      onClick={handleAddToWatchList}
-      {...other}
-    />
-  );
+  return <ButtonBase className={cx("root", active && "active", className)} onClick={handleAddToWatchList} {...other} />;
 };

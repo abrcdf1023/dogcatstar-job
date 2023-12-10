@@ -1,1 +1,1 @@
-export const WATCH_LIST_KEY = 'movieWatchList';
+export const WATCH_LIST_KEY = "movieWatchList";

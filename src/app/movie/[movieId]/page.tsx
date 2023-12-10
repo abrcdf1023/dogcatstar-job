@@ -5,16 +5,16 @@ import fetchMovieCredits from "@/apis/fetchMovieCredits";
 import fetchMovieReviews from "@/apis/fetchMovieReviews";
 
 import Container from "@/components/Container";
-import MovieDetail from '@/components/MovieDetail'
-import MovieCasts from '@/components/MovieCasts'
-import MovieReviews from '@/components/MovieReviews'
+import MovieDetail from "@/components/MovieDetail";
+import MovieCasts from "@/components/MovieCasts";
+import MovieReviews from "@/components/MovieReviews";
 
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
 
 const cx = classNames.bind(styles);
 
-type Params = { params: { movieId: string } }
+type Params = { params: { movieId: string } };
 
 export default async function Movie({ params: { movieId } }: Params) {
   const detail = await fetchMovieDetail(movieId);
@@ -22,14 +22,14 @@ export default async function Movie({ params: { movieId } }: Params) {
   const reviews = await fetchMovieReviews(movieId);
   const directors = credits.crew.filter((member) => member.job === "Director");
   const writers = credits.crew.filter((member) => member.job === "Writer");
-  
+
   return (
-    <div className={cx('root')}>
+    <div className={cx("root")}>
       <MovieDetail movie={detail} directors={directors} writers={writers} />
-      <div className={cx('scetion')}>
+      <div className={cx("scetion")}>
         <Container>
           <MovieCasts casts={credits.cast} />
-          <MovieReviews className={cx('reviews')} reviews={reviews} />
+          <MovieReviews className={cx("reviews")} reviews={reviews} />
         </Container>
       </div>
     </div>

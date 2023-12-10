@@ -3,7 +3,7 @@ import * as React from "react";
 import fetchPopularList from "@/apis/fetchPopularList";
 
 import HomeLayout from "@/components/HomeLayout";
-import SWRProvider from '@/components/SWRProvider'
+import SWRProvider from "@/components/SWRProvider";
 
 import MovieSimpleCard from "@/components/MovieSimpleCard";
 import Grid from "@/components/Grid";

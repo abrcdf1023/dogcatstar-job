@@ -23,27 +23,18 @@ enum SORT_BY {
 }
 
 export default function Watchlist() {
-  const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(
-    WATCH_LIST_KEY,
-    []
-  );
+  const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, []);
   const [sortBy, setSortBy] = React.useState(SORT_BY.DATE_ADDED);
   const [isAsc, setIsAsc] = React.useState(false);
 
   const sortedWatchlist = React.useMemo(() => {
     switch (sortBy) {
       case SORT_BY.POPULARITY:
-        return watchlist.sort((a, b) =>
-          sortByNumber(a.popularity, b.popularity, isAsc)
-        );
+        return watchlist.sort((a, b) => sortByNumber(a.popularity, b.popularity, isAsc));
       case SORT_BY.RELEASE_DATE:
-        return watchlist.sort((a, b) =>
-          sortByNumber(a.releaseDateTime, b.releaseDateTime, isAsc)
-        );
+        return watchlist.sort((a, b) => sortByNumber(a.releaseDateTime, b.releaseDateTime, isAsc));
       default:
-        return watchlist.sort((a, b) =>
-          sortByNumber(a.timeAddedToWatch, b.timeAddedToWatch, isAsc)
-        );
+        return watchlist.sort((a, b) => sortByNumber(a.timeAddedToWatch, b.timeAddedToWatch, isAsc));
     }
   }, [watchlist, sortBy, isAsc]);
 
@@ -79,9 +70,7 @@ export default function Watchlist() {
           </div>
         </div>
         <div className={cx("list")}>
-          {sortedWatchlist?.map((el) => (
-            <MovieCard key={el.id} movie={el} onDelete={handleDelete} />
-          ))}
+          {sortedWatchlist?.map((el) => <MovieCard key={el.id} movie={el} onDelete={handleDelete} />)}
         </div>
       </Container>
     </div>

@@ -1,1 +1,1 @@
-export { SWRProvider as default } from './SWRProvider'
+export { SWRProvider as default } from "./SWRProvider";

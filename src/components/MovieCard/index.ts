@@ -1,2 +1,2 @@
-export { MovieCard as default } from './MovieCard'
-export * from './MovieCard'
+export { MovieCard as default } from "./MovieCard";
+export * from "./MovieCard";

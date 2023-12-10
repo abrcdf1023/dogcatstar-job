@@ -9,18 +9,18 @@ export interface SWRProviderProps {}
 
 export const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) => {
   const { children } = props;
-  const [showError, setShowError] = React.useState(false)
-  const timer = React.useRef<NodeJS.Timeout>()
+  const [showError, setShowError] = React.useState(false);
+  const timer = React.useRef<NodeJS.Timeout>();
 
   const handleError = () => {
-    setShowError(true)
+    setShowError(true);
     if (timer.current) {
-      clearTimeout(timer.current)
+      clearTimeout(timer.current);
     }
     timer.current = setTimeout(() => {
-      setShowError(false)
-    }, 3000)
-  }
+      setShowError(false);
+    }, 3000);
+  };
 
   return (
     <SWRConfig

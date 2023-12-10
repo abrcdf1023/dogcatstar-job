@@ -1,35 +1,35 @@
-'use client'
+"use client";
 
-import * as React from 'react'
+import * as React from "react";
 
-import useDebounce from '@/hooks/useDebounce'
-import useMovieSearch from '@/hooks/useMovieSearch'
-import { ListResponse, Movie } from '@/interfaces/entities'
+import useDebounce from "@/hooks/useDebounce";
+import useMovieSearch from "@/hooks/useMovieSearch";
+import { ListResponse, Movie } from "@/interfaces/entities";
 
-import Container from '../Container'
-import SearchBar from '../SearchBar'
-import MovieSimpleCard from '../MovieSimpleCard'
-import Grid from '../Grid'
-import Skeleton from '../Skeleton'
+import Container from "../Container";
+import SearchBar from "../SearchBar";
+import MovieSimpleCard from "../MovieSimpleCard";
+import Grid from "../Grid";
+import Skeleton from "../Skeleton";
 
-import classNames from 'classnames/bind'
-import styles from './HomeLayout.module.css'
+import classNames from "classnames/bind";
+import styles from "./HomeLayout.module.css";
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 export interface LayoutProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export const HomeLayout = ({ children }: LayoutProps) => {
-  const [query, setQuery] = React.useState('')
-  const [page, setPage] = React.useState(1)
-  const debounceQuery = useDebounce(query, 500)
-  const { data, isLoading, isValidating } = useMovieSearch<ListResponse<Movie>>(debounceQuery, page)
+  const [query, setQuery] = React.useState("");
+  const [page, setPage] = React.useState(1);
+  const debounceQuery = useDebounce(query, 500);
+  const { data, isLoading, isValidating } = useMovieSearch<ListResponse<Movie>>(debounceQuery, page);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
 
   const renderList = () => {
     if (isLoading || isValidating) {
@@ -41,7 +41,7 @@ export const HomeLayout = ({ children }: LayoutProps) => {
             </Grid>
           ))}
         </Grid>
-      )
+      );
     }
     if (data) {
       return (
@@ -57,19 +57,19 @@ export const HomeLayout = ({ children }: LayoutProps) => {
             </Grid>
           ))}
         </Grid>
-      )
-    } 
-    return children
-  }
+      );
+    }
+    return children;
+  };
 
   return (
-    <div className={cx('root')}>
-      <Container className={cx('container')}>
+    <div className={cx("root")}>
+      <Container className={cx("container")}>
         <div className={styles.search}>
           <SearchBar onChange={handleSearchChange} />
         </div>
         {renderList()}
       </Container>
     </div>
-  )
-}
+  );
+};

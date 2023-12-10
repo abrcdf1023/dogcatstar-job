@@ -1,8 +1,8 @@
-import 'server-only'
+import "server-only";
 
-import { ListResponse, Movie } from '@/interfaces/entities'
-import client from './client'
+import { ListResponse, Movie } from "@/interfaces/entities";
+import client from "./client";
 
-const fetchPopularList = () => client<ListResponse<Movie>>('https://api.themoviedb.org/3/movie/popular')
+const fetchPopularList = () => client<ListResponse<Movie>>("https://api.themoviedb.org/3/movie/popular");
 
-export default fetchPopularList
+export default fetchPopularList;
