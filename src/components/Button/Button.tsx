@@ -15,7 +15,14 @@ const Button = (props: ButtonProps) => {
   const { className, fullWidth, ...other } = props
 
   return (
-    <ButtonBase className={cx('root', fullWidth && 'fullWidth')} {...other} />
+    /**
+     * TODO: Remove div wrapper when next.js fix dynamic import order.
+     * Css module cause wrong import order due to next.js dynamic import.
+     * https://github.com/vercel/next.js/issues/16630
+     */
+    <div className={cx('root')}>
+      <ButtonBase className={cx('btn', fullWidth && 'fullWidth')} {...other} />
+    </div>
   )
 }
 
