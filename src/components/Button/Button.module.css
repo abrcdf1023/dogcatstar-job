@@ -9,6 +9,10 @@
   color: var(--white);
 }
 
-.root .fullWidth {
+.fullWidth {
+  width: 100%;
+}
+
+.fullWidth .btn {
   width: 100%;
 }
