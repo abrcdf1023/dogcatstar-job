@@ -9,8 +9,8 @@ import sortByNumber from "@/utils/sortByNumber";
 
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import ModalWatchLottery from "@/components/ModalWatchLottery";
 import MovieCard, { MovieCardProps } from "@/components/MovieCard";
-import WatchLottery from "@/components/WatchLottery";
 
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
@@ -38,8 +38,6 @@ export default function Watchlist() {
         return watchlist.sort((a, b) => sortByNumber(a.timeAddedToWatch, b.timeAddedToWatch, isAsc));
     }
   }, [watchlist, sortBy, isAsc]);
-
-  const lotteryList = React.useMemo(() => watchlist.map((el) => el.title || ""), [watchlist]);
 
   const handleSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value as SORT_BY);
@@ -72,9 +70,8 @@ export default function Watchlist() {
             <Button onClick={handleOrderBy}>{isAsc ? "↑" : "↓"}</Button>
           </div>
           <div style={{ flexGrow: 1 }} />
-          <Button>Watch Lottery</Button>
+          <ModalWatchLottery watchlist={watchlist} />
         </div>
-        <WatchLottery list={lotteryList} />
         <div className={cx("list")}>
           {sortedWatchlist?.map((el) => <MovieCard key={el.id} movie={el} onDelete={handleDelete} />)}
         </div>
