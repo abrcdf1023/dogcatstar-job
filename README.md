@@ -28,6 +28,10 @@ Features 加分題:
 3. 記錄的To Watch List 可以記錄在Firebase上
     1. Note: To Watch List 不需要分頁
 
-## Development
+## How to develop?
 
 `pnpm install && pnpm dev`
+
+## How to deploy?
+
+Push updated code to branch `main` and vercel CI/CD will be automatically triggered. Please visit [https://dogcatstar-job.vercel.app/](https://dogcatstar-job.vercel.app/) for the latest production code.
