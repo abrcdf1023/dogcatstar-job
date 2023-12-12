@@ -2,34 +2,23 @@
 
 import * as React from "react";
 
-import useDebounce from "@/hooks/useDebounce";
+import { useSearchParams } from "next/navigation";
 import useMovieSearch from "@/hooks/useMovieSearch";
-import { ListResponse, Movie } from "@/interfaces/entities";
 
 import Container from "../Container";
-import SearchBar from "../SearchBar";
 import MovieSimpleCard from "../MovieSimpleCard";
 import Grid from "../Grid";
 import Skeleton from "../Skeleton";
 
-import classNames from "classnames/bind";
-import styles from "./HomeLayout.module.css";
-
-const cx = classNames.bind(styles);
-
-export interface LayoutProps {
+export interface SearchListProps {
   children?: React.ReactNode;
 }
 
-export const HomeLayout = ({ children }: LayoutProps) => {
-  const [query, setQuery] = React.useState("");
+export const SearchList = ({ children }: SearchListProps) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q") || "";
   const [page, setPage] = React.useState(1);
-  const debounceQuery = useDebounce(query, 500);
-  const { data, isLoading, isValidating } = useMovieSearch<ListResponse<Movie>>(debounceQuery, page);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
+  const { data, isLoading, isValidating } = useMovieSearch(query, page);
 
   const renderList = () => {
     if (isLoading || isValidating) {
@@ -62,14 +51,5 @@ export const HomeLayout = ({ children }: LayoutProps) => {
     return children;
   };
 
-  return (
-    <div className={cx("root")}>
-      <Container className={cx("container")}>
-        <div className={styles.search}>
-          <SearchBar onChange={handleSearchChange} />
-        </div>
-        {renderList()}
-      </Container>
-    </div>
-  );
+  return <Container>{renderList()}</Container>;
 };

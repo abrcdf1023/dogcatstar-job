@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ButtonBase from "../ButtonBase";
 
 import classNames from "classnames/bind";
@@ -15,6 +15,8 @@ export interface SearchBarProps extends React.ComponentPropsWithoutRef<"input"> 
 export const SearchBar = (props: SearchBarProps) => {
   const { onSubmit, ...other } = props;
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q") || "";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ export const SearchBar = (props: SearchBarProps) => {
 
   return (
     <form className={cx("root")} onSubmit={handleSubmit}>
-      <input className={cx("input")} placeholder="Search Movies" name="query" {...other} />
+      <input className={cx("input")} placeholder="Search Movies" name="query" defaultValue={query} {...other} />
       <ButtonBase className={cx("icon")} type="submit" />
     </form>
   );
