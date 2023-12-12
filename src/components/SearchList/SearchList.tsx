@@ -18,10 +18,10 @@ export const SearchList = ({ children }: SearchListProps) => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [page, setPage] = React.useState(1);
-  const { data, isLoading, isValidating } = useMovieSearch(query, page);
+  const { data, isLoading } = useMovieSearch(query, page);
 
   const renderList = () => {
-    if (isLoading || isValidating) {
+    if (isLoading) {
       return (
         <Grid container>
           {Array.from({ length: 20 }, (_, i) => (
