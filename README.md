@@ -27,3 +27,7 @@ Features 加分題:
 2. **分頁和排序**：如果API返回的結果太多，你需要實現分頁功能。此外，用戶也應該能夠按照上映日期、評分等標準對API返回的結果進行排序。
 3. 記錄的To Watch List 可以記錄在Firebase上
     1. Note: To Watch List 不需要分頁
+
+## Development
+
+`pnpm install && pnpm dev`
