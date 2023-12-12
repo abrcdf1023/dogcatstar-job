@@ -11,7 +11,7 @@ import className from "classnames/bind";
 import styles from "./MovieCard.module.css";
 const cx = className.bind(styles);
 
-export interface MovieCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MovieCardProps extends React.ComponentPropsWithoutRef<"div"> {
   movie?: Movie;
   onDelete?: (el?: Movie) => void;
 }

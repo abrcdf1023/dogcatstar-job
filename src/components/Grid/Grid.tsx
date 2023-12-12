@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 import styles from "./Grid.module.css";
 
-export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends React.ComponentPropsWithoutRef<"div"> {
   className?: string;
   container?: boolean;
 }

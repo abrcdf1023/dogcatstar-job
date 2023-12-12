@@ -10,7 +10,7 @@ import classNames from "classnames/bind";
 import styles from "./MovieCasts.module.css";
 const cx = classNames.bind(styles);
 
-export interface MovieCreditsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MovieCreditsProps extends React.ComponentPropsWithoutRef<"div"> {
   casts?: Cast[];
 }
 

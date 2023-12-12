@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./Card.module.css";
 const cx = classNames.bind(styles);
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends React.ComponentPropsWithoutRef<"div"> {
   direction?: "row" | "column";
 }
 

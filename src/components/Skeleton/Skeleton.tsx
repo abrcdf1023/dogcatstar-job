@@ -2,7 +2,7 @@ import * as React from "react";
 
 import shimmer from "@/utils/shimmer";
 
-export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SkeletonProps extends React.ComponentPropsWithoutRef<"div"> {
   width?: number;
   height?: number;
 }

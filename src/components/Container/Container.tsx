@@ -4,7 +4,7 @@ import className from "classnames/bind";
 import styles from "./Container.module.css";
 const cx = className.bind(styles);
 
-export interface ContainerProps {
+export interface ContainerProps extends React.ComponentPropsWithoutRef<"div"> {
   className?: string;
 }
 

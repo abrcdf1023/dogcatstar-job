@@ -9,7 +9,7 @@ import classNames from "classnames/bind";
 import styles from "./MovieReviews.module.css";
 const cx = classNames.bind(styles);
 
-export interface MovieReviewsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MovieReviewsProps extends React.ComponentPropsWithoutRef<"div"> {
   reviews?: Reviews;
 }
 
