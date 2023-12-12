@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import Link from "next/link";
+import SearchBar from "../SearchBar";
 
 import className from "classnames/bind";
 import styles from "./Header.module.css";
@@ -14,6 +15,7 @@ export const Header = () => {
         <Link href="/" className={cx("logo")}>
           Dog Cat Star
         </Link>
+        <SearchBar />
         <Link href="/watchlist">Watch List</Link>
       </div>
     </header>
