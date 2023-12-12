@@ -2,18 +2,20 @@ import * as React from "react";
 
 import fetchPopularList from "@/apis/fetchPopularList";
 
-import HomeLayout from "@/components/HomeLayout";
+import Container from "@/components/Container";
 import SWRProvider from "@/components/SWRProvider";
 
 import MovieSimpleCard from "@/components/MovieSimpleCard";
 import Grid from "@/components/Grid";
+
+import styles from "./page-home.module.css";
 
 export default async function Home() {
   const data = await fetchPopularList();
 
   return (
     <SWRProvider>
-      <HomeLayout>
+      <Container className={styles.container}>
         <Grid container>
           {data.results.map((el) => (
             <Grid key={el.id}>
@@ -26,7 +28,7 @@ export default async function Home() {
             </Grid>
           ))}
         </Grid>
-      </HomeLayout>
+      </Container>
     </SWRProvider>
   );
 }
