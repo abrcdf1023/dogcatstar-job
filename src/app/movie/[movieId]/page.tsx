@@ -24,7 +24,7 @@ export default async function Movie({ params: { movieId } }: Params) {
   const writers = credits.crew.filter((member) => member.job === "Writer");
 
   return (
-    <div className={cx("root")}>
+    <>
       <MovieDetail movie={detail} directors={directors} writers={writers} />
       <div className={cx("scetion")}>
         <Container>
@@ -32,6 +32,6 @@ export default async function Movie({ params: { movieId } }: Params) {
           <MovieReviews className={cx("reviews")} reviews={reviews} />
         </Container>
       </div>
-    </div>
+    </>
   );
 }

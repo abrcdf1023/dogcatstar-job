@@ -1,12 +1,14 @@
-.root {
-  display: flex;
-  flex-direction: column;
+@layer base {
+  .root {
+    display: flex;
+    flex-direction: column;
 
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
 
-.row {
-  flex-direction: row;
+  .row {
+    flex-direction: row;
+  }
 }

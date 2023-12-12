@@ -1,18 +1,10 @@
 .root {
-  display: inline-flex;
-}
-
-.root .btn {
-  padding: 8px;
   border-radius: 8px;
   background-color: var(--secondary);
   color: var(--white);
+  padding: 8px;
 }
 
 .fullWidth {
-  width: 100%;
-}
-
-.fullWidth .btn {
   width: 100%;
 }

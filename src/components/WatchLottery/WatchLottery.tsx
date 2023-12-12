@@ -62,7 +62,7 @@ export const WatchLottery = (props: WatchLotteryProps) => {
     ));
 
   return (
-    <div className={cx("root")}>
+    <div>
       <div ref={containerRef} className={cx("container")} style={{ height }}>
         {renderList()}
         {/* Duplicate the list to make it looks smooth. */}

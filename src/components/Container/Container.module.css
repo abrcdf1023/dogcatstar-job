@@ -1,5 +1,7 @@
-.root {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 0 16px;
+@layer base {
+  .root {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 0 16px;
+  }
 }
