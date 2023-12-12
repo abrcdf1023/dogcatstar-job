@@ -8,14 +8,12 @@ import SWRProvider from "@/components/SWRProvider";
 import MovieSimpleCard from "@/components/MovieSimpleCard";
 import Grid from "@/components/Grid";
 
-import styles from "./page-home.module.css";
-
 export default async function Home() {
   const data = await fetchPopularList();
 
   return (
     <SWRProvider>
-      <Container className={styles.container}>
+      <Container style={{ paddingTop: 24 }}>
         <Grid container>
           {data.results.map((el) => (
             <Grid key={el.id}>
