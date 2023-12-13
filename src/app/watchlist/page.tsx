@@ -68,7 +68,7 @@ export default function Watchlist() {
               },
             ]}
           />
-          <ButtonOrderBy onClick={handleOrderBy} />
+          <ButtonOrderBy onClick={handleOrderBy} isAsc={isAsc} />
           <div style={{ flexGrow: 1 }} />
           <ModalWatchLottery watchlist={watchlist} />
         </div>
