@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { PendingWatchMovie } from "@/interfaces/entities";
-import Button from "../Button";
-import Modal from "../Modal";
+import Button from "../common/Button";
+import Modal from "../common/Modal";
 import WatchLottery from "../WatchLottery";
 
 import classNames from "classnames/bind";

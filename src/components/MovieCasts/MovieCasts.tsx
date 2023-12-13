@@ -2,9 +2,9 @@ import * as React from "react";
 
 import { Cast } from "@/interfaces/entities";
 
-import Card from "../Card";
-import Image from "../Image";
-import Typography from "../Typography";
+import Card from "../common/Card";
+import Image from "../common/Image";
+import Typography from "../common/Typography";
 
 import classNames from "classnames/bind";
 import styles from "./MovieCasts.module.css";

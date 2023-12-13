@@ -4,7 +4,7 @@ import fetchMovieDetail from "@/apis/fetchMovieDetail";
 import fetchMovieCredits from "@/apis/fetchMovieCredits";
 import fetchMovieReviews from "@/apis/fetchMovieReviews";
 
-import Container from "@/components/Container";
+import Container from "@/components/common/Container";
 import MovieDetail from "@/components/MovieDetail";
 import MovieCasts from "@/components/MovieCasts";
 import MovieReviews from "@/components/MovieReviews";

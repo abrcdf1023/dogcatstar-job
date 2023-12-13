@@ -8,11 +8,11 @@ import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
 
-import Container from "../Container";
-import Typography from "../Typography";
+import Container from "../common/Container";
+import Typography from "../common/Typography";
 import MovieSimpleCard from "../MovieSimpleCard";
-import Grid from "../Grid";
-import Skeleton from "../Skeleton";
+import Grid from "../common/Grid";
+import Skeleton from "../common/Skeleton";
 import SelectSortBy, { useSortBy } from "../SelectSortBy";
 import ButtonOrderBy, { useOrderBy } from "../ButtonOrderBy";
 

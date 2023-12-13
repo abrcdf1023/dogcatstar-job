@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import ButtonBase from "../ButtonBase";
+import ButtonBase from "../common/ButtonBase";
 
 import classNames from "classnames/bind";
 import styles from "./SearchBar.module.css";

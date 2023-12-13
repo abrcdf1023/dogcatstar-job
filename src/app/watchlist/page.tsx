@@ -10,7 +10,7 @@ import numberCompare from "@/utils/numberCompare";
 import SelectSortBy, { useSortBy } from "@/components/SelectSortBy";
 import ButtonOrderBy, { useOrderBy } from "@/components/ButtonOrderBy";
 
-import Container from "@/components/Container";
+import Container from "@/components/common/Container";
 import ModalWatchLottery from "@/components/ModalWatchLottery";
 import MovieCard, { MovieCardProps } from "@/components/MovieCard";
 
