@@ -3,12 +3,14 @@
 import * as React from "react";
 
 import { PendingWatchMovie } from "@/interfaces/entities";
+import { SORT_BY } from "@/interfaces/utils";
 import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import sortByNumber from "@/utils/sortByNumber";
+import SelectSortBy, { useSortBy } from "@/components/SelectSortBy";
+import ButtonOrderBy, { useOrderBy } from "@/components/ButtonOrderBy";
 
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import ModalWatchLottery from "@/components/ModalWatchLottery";
 import MovieCard, { MovieCardProps } from "@/components/MovieCard";
 
@@ -17,16 +19,11 @@ import styles from "./page.module.css";
 
 const cx = classNames.bind(styles);
 
-enum SORT_BY {
-  DATE_ADDED = "DATE_ADDED",
-  POPULARITY = "POPULARITY",
-  RELEASE_DATE = "RELEASE_DATE",
-}
-
 export default function Watchlist() {
   const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, []);
-  const [sortBy, setSortBy] = React.useState(SORT_BY.DATE_ADDED);
-  const [isAsc, setIsAsc] = React.useState(false);
+
+  const { sortBy, handleSortBy } = useSortBy();
+  const { isAsc, handleOrderBy } = useOrderBy();
 
   const sortedWatchlist = React.useMemo(() => {
     switch (sortBy) {
@@ -39,14 +36,6 @@ export default function Watchlist() {
     }
   }, [watchlist, sortBy, isAsc]);
 
-  const handleSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value as SORT_BY);
-  };
-
-  const handleOrderBy = () => {
-    setIsAsc((v) => !v);
-  };
-
   const handleDelete: MovieCardProps["onDelete"] = (el) => {
     if (el) {
       setWatchList((v) => v.filter((m) => m.id !== el.id));
@@ -57,18 +46,8 @@ export default function Watchlist() {
     <div className={cx("root")}>
       <Container>
         <div className={cx("actions")}>
-          <div className={cx("action")}>
-            Sort By:
-            <select onChange={handleSortBy}>
-              <option value={SORT_BY.DATE_ADDED}>Date Added</option>
-              <option value={SORT_BY.POPULARITY}>Popularity</option>
-              <option value={SORT_BY.RELEASE_DATE}>Release Date</option>
-            </select>
-          </div>
-          <div className={cx("action")}>
-            Order By:
-            <Button onClick={handleOrderBy}>{isAsc ? "↑" : "↓"}</Button>
-          </div>
+          <SelectSortBy onChange={handleSortBy} />
+          <ButtonOrderBy onClick={handleOrderBy} />
           <div style={{ flexGrow: 1 }} />
           <ModalWatchLottery watchlist={watchlist} />
         </div>
