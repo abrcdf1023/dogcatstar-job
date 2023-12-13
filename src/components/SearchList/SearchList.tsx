@@ -16,6 +16,8 @@ import Skeleton from "../Skeleton";
 import SelectSortBy, { useSortBy } from "../SelectSortBy";
 import ButtonOrderBy, { useOrderBy } from "../ButtonOrderBy";
 
+import styles from "./SearchList.module.css";
+
 enum SORT_BY {
   RELEASE_DATE = "RELEASE_DATE",
   POPULARITY = "POPULARITY",
@@ -88,34 +90,38 @@ export const SearchList = () => {
   };
 
   return (
-    <Container>
-      <div style={{ display: "flex", gap: 8 }}>
-        <SelectSortBy
-          onChange={handleSortBy}
-          options={[
-            {
-              value: SORT_BY.RELEASE_DATE,
-              label: "Release Date",
-            },
-            {
-              value: SORT_BY.VOTE_AVERAGE,
-              label: "Vote Average",
-            },
-            {
-              value: SORT_BY.POPULARITY,
-              label: "Popularity",
-            },
-          ]}
-        />
-        <ButtonOrderBy onClick={handleOrderBy} isAsc={isAsc} />
+    <>
+      <div className={styles["tools-bar"]}>
+        <Container className={styles["container"]}>
+          <SelectSortBy
+            onChange={handleSortBy}
+            options={[
+              {
+                value: SORT_BY.RELEASE_DATE,
+                label: "Release Date",
+              },
+              {
+                value: SORT_BY.VOTE_AVERAGE,
+                label: "Vote Average",
+              },
+              {
+                value: SORT_BY.POPULARITY,
+                label: "Popularity",
+              },
+            ]}
+          />
+          <ButtonOrderBy onClick={handleOrderBy} isAsc={isAsc} />
+        </Container>
       </div>
-      {renderList()}
-      {isValidating && (
-        <Typography fontSize={24} align="center">
-          Loading...
-        </Typography>
-      )}
-      <div ref={triggeRef} style={{ height: 10 }} />
-    </Container>
+      <Container style={{ paddingTop: 24 }}>
+        {renderList()}
+        {isValidating && (
+          <Typography fontSize={24} align="center">
+            Loading...
+          </Typography>
+        )}
+        <div ref={triggeRef} style={{ height: 10 }} />
+      </Container>
+    </>
   );
 };
