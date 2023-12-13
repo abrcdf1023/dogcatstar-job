@@ -3,7 +3,6 @@
 import * as React from "react";
 
 import { PendingWatchMovie } from "@/interfaces/entities";
-import { SORT_BY } from "@/interfaces/utils";
 import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import sortByNumber from "@/utils/sortByNumber";
@@ -19,10 +18,16 @@ import styles from "./page.module.css";
 
 const cx = classNames.bind(styles);
 
+enum SORT_BY {
+  DATE_ADDED = "DATE_ADDED",
+  POPULARITY = "POPULARITY",
+  RELEASE_DATE = "RELEASE_DATE",
+}
+
 export default function Watchlist() {
   const [watchlist, setWatchList] = useLocalStorage<PendingWatchMovie[]>(WATCH_LIST_KEY, []);
 
-  const { sortBy, handleSortBy } = useSortBy();
+  const { sortBy, handleSortBy } = useSortBy(SORT_BY.DATE_ADDED);
   const { isAsc, handleOrderBy } = useOrderBy();
 
   const sortedWatchlist = React.useMemo(() => {
@@ -46,7 +51,23 @@ export default function Watchlist() {
     <div className={cx("root")}>
       <Container>
         <div className={cx("actions")}>
-          <SelectSortBy onChange={handleSortBy} />
+          <SelectSortBy
+            onChange={handleSortBy}
+            options={[
+              {
+                value: SORT_BY.DATE_ADDED,
+                label: "Date Added",
+              },
+              {
+                value: SORT_BY.POPULARITY,
+                label: "Popularity",
+              },
+              {
+                value: SORT_BY.RELEASE_DATE,
+                label: "Release Date",
+              },
+            ]}
+          />
           <ButtonOrderBy onClick={handleOrderBy} />
           <div style={{ flexGrow: 1 }} />
           <ModalWatchLottery watchlist={watchlist} />

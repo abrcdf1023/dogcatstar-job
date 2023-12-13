@@ -1,10 +1,10 @@
 import * as React from "react";
-import { SORT_BY } from "@/interfaces/utils";
 
-export function useSortBy() {
-  const [sortBy, setSortBy] = React.useState(SORT_BY.DATE_ADDED);
+export function useSortBy<S>(defaultSortBy: S) {
+  const [sortBy, setSortBy] = React.useState<S>(defaultSortBy);
+
   const handleSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value as SORT_BY);
+    setSortBy(e.target.value as S);
   };
 
   return { sortBy, handleSortBy };
