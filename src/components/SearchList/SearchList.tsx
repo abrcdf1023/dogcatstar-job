@@ -5,21 +5,43 @@ import * as React from "react";
 import { useSearchParams } from "next/navigation";
 import useMovieSearch from "@/hooks/useMovieSearch";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import getTimestamp from "@/utils/getTimestamp";
+import sortByNumber from "@/utils/sortByNumber";
 
 import Container from "../Container";
 import Typography from "../Typography";
 import MovieSimpleCard from "../MovieSimpleCard";
 import Grid from "../Grid";
 import Skeleton from "../Skeleton";
+import SelectSortBy, { useSortBy } from "../SelectSortBy";
+import ButtonOrderBy, { useOrderBy } from "../ButtonOrderBy";
+
+enum SORT_BY {
+  RELEASE_DATE = "RELEASE_DATE",
+  POPULARITY = "POPULARITY",
+}
 
 export const SearchList = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const triggeRef = React.useRef<HTMLDivElement>(null);
-  const { setPage, movies, isLoading, isValidating } = useMovieSearch(query);
+  const { setPage, movies: moviesData, isLoading, isValidating } = useMovieSearch(query);
+  const { sortBy, handleSortBy } = useSortBy(SORT_BY.RELEASE_DATE);
+  const { isAsc, handleOrderBy } = useOrderBy();
 
   const entry = useIntersectionObserver(triggeRef);
   const isVisible = !!entry?.isIntersecting;
+
+  const movies = React.useMemo(() => {
+    switch (sortBy) {
+      case SORT_BY.POPULARITY:
+        return moviesData.sort((a, b) => sortByNumber(a.popularity, b.popularity, isAsc));
+      default:
+        return moviesData.sort((a, b) =>
+          sortByNumber(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
+        );
+    }
+  }, [moviesData, sortBy, isAsc]);
 
   React.useEffect(() => {
     if (isVisible && !isLoading && !isValidating) {
@@ -62,6 +84,22 @@ export const SearchList = () => {
 
   return (
     <Container>
+      <div style={{ display: "flex", gap: 8 }}>
+        <SelectSortBy
+          onChange={handleSortBy}
+          options={[
+            {
+              value: SORT_BY.RELEASE_DATE,
+              label: "Release Date",
+            },
+            {
+              value: SORT_BY.POPULARITY,
+              label: "Popularity",
+            },
+          ]}
+        />
+        <ButtonOrderBy onClick={handleOrderBy} isAsc={isAsc} />
+      </div>
       {renderList()}
       {isValidating && (
         <Typography fontSize={24} align="center">

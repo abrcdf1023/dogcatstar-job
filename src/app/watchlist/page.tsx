@@ -5,6 +5,7 @@ import * as React from "react";
 import { PendingWatchMovie } from "@/interfaces/entities";
 import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import getTimestamp from "@/utils/getTimestamp";
 import sortByNumber from "@/utils/sortByNumber";
 import SelectSortBy, { useSortBy } from "@/components/SelectSortBy";
 import ButtonOrderBy, { useOrderBy } from "@/components/ButtonOrderBy";
@@ -35,7 +36,9 @@ export default function Watchlist() {
       case SORT_BY.POPULARITY:
         return watchlist.sort((a, b) => sortByNumber(a.popularity, b.popularity, isAsc));
       case SORT_BY.RELEASE_DATE:
-        return watchlist.sort((a, b) => sortByNumber(a.releaseDateTime, b.releaseDateTime, isAsc));
+        return watchlist.sort((a, b) =>
+          sortByNumber(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
+        );
       default:
         return watchlist.sort((a, b) => sortByNumber(a.timeAddedToWatch, b.timeAddedToWatch, isAsc));
     }

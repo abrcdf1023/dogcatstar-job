@@ -19,6 +19,7 @@ export default function useMovieSearch(query?: string) {
   const { data, setSize, isLoading, isValidating } = useSWRInfinite(getKey, fetcher, {
     initialSize: 1,
     revalidateFirstPage: false,
+    revalidateOnFocus: false,
   });
   const movies = React.useMemo(() => data?.flatMap((el) => el) || [], [data]);
 

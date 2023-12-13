@@ -32,7 +32,6 @@ export const ButtonAddToWatchList = (props: ButtonAddToWatchListProps) => {
           {
             ...movie,
             timeAddedToWatch: new Date().getTime(),
-            releaseDateTime: movie.release_date ? new Date(movie.release_date).getTime() : undefined,
           } as PendingWatchMovie,
         ];
       }

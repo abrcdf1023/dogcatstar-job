@@ -65,7 +65,6 @@ export interface Movie {
 
 export interface PendingWatchMovie extends Movie {
   timeAddedToWatch: number;
-  releaseDateTime?: number;
 }
 
 export interface Cast {
