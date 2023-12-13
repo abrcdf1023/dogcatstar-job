@@ -28,10 +28,10 @@ export const MovieSimpleCard = (props: MoveCardProps) => {
         <Image className={cx("img")} path={posterPath} alt={title} />
       </Link>
       <div className={cx("card-body")}>
-        {title && <Typography fontWeight={700}>{title}</Typography>}
-        {releaseDate && <Typography>Release: {releaseDate}</Typography>}
-        {popularity && <Typography>Popularity: {popularity}</Typography>}
-        {voteAverage && <Typography>Vote Average: {voteAverage}</Typography>}
+        {!!title && <Typography fontWeight={700}>{title}</Typography>}
+        {!!releaseDate && <Typography>Release: {releaseDate}</Typography>}
+        {!!popularity && <Typography>Popularity: {popularity}</Typography>}
+        {!!voteAverage && <Typography>Vote Average: {voteAverage}</Typography>}
       </div>
     </Card>
   );
