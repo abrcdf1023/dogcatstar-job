@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Reviews } from "@/interfaces/entities";
 
-import Card from "../common/Card";
-import Typography from "../common/Typography";
+import Card from "../../common/Card";
+import Typography from "../../common/Typography";
 
 import classNames from "classnames/bind";
 import styles from "./MovieReviews.module.css";

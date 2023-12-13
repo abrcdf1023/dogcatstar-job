@@ -8,13 +8,13 @@ import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
 
-import Container from "../common/Container";
-import Typography from "../common/Typography";
-import MovieSimpleCard from "../MovieSimpleCard";
-import Grid from "../common/Grid";
-import Skeleton from "../common/Skeleton";
-import SelectSortBy, { useSortBy } from "../SelectSortBy";
-import ButtonOrderBy, { useOrderBy } from "../ButtonOrderBy";
+import Container from "../../common/Container";
+import Typography from "../../common/Typography";
+import MovieSimpleCard from "../../common/MovieSimpleCard";
+import Grid from "../../common/Grid";
+import Skeleton from "../../common/Skeleton";
+import SelectSortBy, { useSortBy } from "../../common/SelectSortBy";
+import ButtonOrderBy, { useOrderBy } from "../../common/ButtonOrderBy";
 
 import styles from "./SearchList.module.css";
 

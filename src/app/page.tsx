@@ -3,7 +3,7 @@ import * as React from "react";
 import fetchPopularList from "@/apis/fetchPopularList";
 
 import Container from "@/components/common/Container";
-import MovieSimpleCard from "@/components/MovieSimpleCard";
+import MovieSimpleCard from "@/components/common/MovieSimpleCard";
 import Grid from "@/components/common/Grid";
 
 export default async function Home() {

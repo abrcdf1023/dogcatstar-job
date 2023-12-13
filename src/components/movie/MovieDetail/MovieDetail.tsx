@@ -3,10 +3,10 @@ import * as React from "react";
 import getImageUrl from "@/utils/getImageUrl";
 import getHourMinutes from "@/utils/getHourMinutes";
 
-import Container from "../common/Container";
-import Typography from "../common/Typography";
-import Grid from "../common/Grid";
-import Image from "../common/Image";
+import Container from "../../common/Container";
+import Typography from "../../common/Typography";
+import Grid from "../../common/Grid";
+import Image from "../../common/Image";
 import ButtonAddToWatchList from "../ButtonAddToWatchList";
 import { Crew, Movie } from "@/interfaces/entities";
 

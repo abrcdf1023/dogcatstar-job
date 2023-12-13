@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import SWRProvider from "@/components/SWRProvider";
+import Header from "@/components/layout/Header";
+import SWRProvider from "@/components/providers/SWRProvider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 

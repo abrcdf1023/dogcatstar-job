@@ -1,8 +1,8 @@
 import React from "react";
 
-import Container from "../common/Container";
-import Typography from "../common/Typography";
-import Button from "../common/Button";
+import Container from "../Container";
+import Typography from "../Typography";
+import Button from "../Button";
 
 import classNames from "classnames/bind";
 import styles from "./ErrorPage.module.css";

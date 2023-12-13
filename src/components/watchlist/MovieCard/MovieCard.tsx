@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { Movie } from "@/interfaces/entities";
 
-import Image from "../common/Image";
-import Typography from "../common/Typography";
-import Card from "../common/Card";
-import Button, { ButtonProps } from "../common/Button";
+import Image from "../../common/Image";
+import Typography from "../../common/Typography";
+import Card from "../../common/Card";
+import Button, { ButtonProps } from "../../common/Button";
 
 import className from "classnames/bind";
 import styles from "./MovieCard.module.css";

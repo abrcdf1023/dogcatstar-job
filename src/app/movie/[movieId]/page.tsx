@@ -5,9 +5,9 @@ import fetchMovieCredits from "@/apis/fetchMovieCredits";
 import fetchMovieReviews from "@/apis/fetchMovieReviews";
 
 import Container from "@/components/common/Container";
-import MovieDetail from "@/components/MovieDetail";
-import MovieCasts from "@/components/MovieCasts";
-import MovieReviews from "@/components/MovieReviews";
+import MovieDetail from "@/components/movie/MovieDetail";
+import MovieCasts from "@/components/movie/MovieCasts";
+import MovieReviews from "@/components/movie/MovieReviews";
 
 import classNames from "classnames/bind";
 import styles from "./page.module.css";

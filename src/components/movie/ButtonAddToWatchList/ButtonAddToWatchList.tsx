@@ -6,7 +6,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import { Movie, PendingWatchMovie } from "@/interfaces/entities";
 
-import ButtonBase, { ButtonBaseProps } from "../common/ButtonBase";
+import ButtonBase, { ButtonBaseProps } from "../../common/ButtonBase";
 
 import className from "classnames/bind";
 import styles from "./ButtonAddToWatchList.module.css";

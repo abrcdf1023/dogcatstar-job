@@ -7,12 +7,12 @@ import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
-import SelectSortBy, { useSortBy } from "@/components/SelectSortBy";
-import ButtonOrderBy, { useOrderBy } from "@/components/ButtonOrderBy";
 
 import Container from "@/components/common/Container";
-import ModalWatchLottery from "@/components/ModalWatchLottery";
-import MovieCard, { MovieCardProps } from "@/components/MovieCard";
+import SelectSortBy, { useSortBy } from "@/components/common/SelectSortBy";
+import ButtonOrderBy, { useOrderBy } from "@/components/common/ButtonOrderBy";
+import ModalWatchLottery from "@/components/watchlist/ModalWatchLottery";
+import MovieCard, { MovieCardProps } from "@/components/watchlist/MovieCard";
 
 import classNames from "classnames/bind";
 import styles from "./page.module.css";

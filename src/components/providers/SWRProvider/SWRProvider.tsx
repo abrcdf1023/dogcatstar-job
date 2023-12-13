@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { SWRConfig } from "swr";
-import ErrorToast from "../ErrorToast";
+import ErrorToast from "../../common/ErrorToast";
 
 export interface SWRProviderProps {}
 
