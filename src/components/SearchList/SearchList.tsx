@@ -63,6 +63,11 @@ export const SearchList = () => {
   return (
     <Container>
       {renderList()}
+      {isValidating && (
+        <Typography fontSize={24} align="center">
+          Loading...
+        </Typography>
+      )}
       <div ref={triggeRef} style={{ height: 10 }} />
     </Container>
   );
