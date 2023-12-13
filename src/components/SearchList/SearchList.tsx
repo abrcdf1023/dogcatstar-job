@@ -4,21 +4,28 @@ import * as React from "react";
 
 import { useSearchParams } from "next/navigation";
 import useMovieSearch from "@/hooks/useMovieSearch";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 
 import Container from "../Container";
+import Typography from "../Typography";
 import MovieSimpleCard from "../MovieSimpleCard";
 import Grid from "../Grid";
 import Skeleton from "../Skeleton";
 
-export interface SearchListProps {
-  children?: React.ReactNode;
-}
-
-export const SearchList = ({ children }: SearchListProps) => {
+export const SearchList = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
-  const [page, setPage] = React.useState(1);
-  const { data, isLoading } = useMovieSearch(query, page);
+  const triggeRef = React.useRef<HTMLDivElement>(null);
+  const { setPage, movies, isLoading, isValidating } = useMovieSearch(query);
+
+  const entry = useIntersectionObserver(triggeRef);
+  const isVisible = !!entry?.isIntersecting;
+
+  React.useEffect(() => {
+    if (isVisible && !isLoading && !isValidating) {
+      setPage((p) => p + 1);
+    }
+  }, [isVisible]);
 
   const renderList = () => {
     if (isLoading) {
@@ -32,10 +39,10 @@ export const SearchList = ({ children }: SearchListProps) => {
         </Grid>
       );
     }
-    if (data) {
+    if (movies.length > 0) {
       return (
         <Grid container>
-          {data.results.map((el) => (
+          {movies.map((el) => (
             <Grid key={el.id}>
               <MovieSimpleCard
                 href={`/movie/${el.id}`}
@@ -48,8 +55,15 @@ export const SearchList = ({ children }: SearchListProps) => {
         </Grid>
       );
     }
-    return children;
+    if (movies.length === 0) {
+      return <Typography fontSize={24}>There are no movies that matched your query.</Typography>;
+    }
   };
 
-  return <Container>{renderList()}</Container>;
+  return (
+    <Container>
+      {renderList()}
+      <div ref={triggeRef} style={{ height: 10 }} />
+    </Container>
+  );
 };

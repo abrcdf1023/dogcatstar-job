@@ -1,22 +1,31 @@
-import useSWR, { SWRResponse } from "swr";
+import * as React from "react";
+import useSWRInfinite from "swr/infinite";
 
 import qs from "query-string";
 import { ListResponse, Movie } from "@/interfaces/entities";
 import client from "@/apis/client";
 
-export default function useMovieSearch(query: string, page: number): SWRResponse<ListResponse<Movie>> {
-  const res = useSWR<ListResponse<Movie>>(
-    query
-      ? `https://api.themoviedb.org/3/search/movie?${qs.stringify({
-          query,
-          page,
-        })}`
-      : null,
-    client,
-    {
-      revalidateOnFocus: false,
-    },
-  );
+const fetcher = (url: string) => client<ListResponse<Movie>>(url).then((res) => res.results);
 
-  return res;
+export default function useMovieSearch(query?: string) {
+  const getKey = (pageIndex: number, previousPageData: Movie[]) => {
+    if ((previousPageData && !previousPageData.length) || !query) return null; // reached the end
+    return `https://api.themoviedb.org/3/search/movie?${qs.stringify({
+      query,
+      page: pageIndex + 1,
+    })}`;
+  };
+
+  const { data, setSize, isLoading, isValidating } = useSWRInfinite(getKey, fetcher, {
+    initialSize: 1,
+    revalidateFirstPage: false,
+  });
+  const movies = React.useMemo(() => data?.flatMap((el) => el) || [], [data]);
+
+  return {
+    movies,
+    isLoading,
+    isValidating,
+    setPage: setSize,
+  };
 }
