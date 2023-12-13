@@ -6,7 +6,7 @@ import { PendingWatchMovie } from "@/interfaces/entities";
 import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import getTimestamp from "@/utils/getTimestamp";
-import sortByNumber from "@/utils/sortByNumber";
+import numberCompare from "@/utils/numberCompare";
 import SelectSortBy, { useSortBy } from "@/components/SelectSortBy";
 import ButtonOrderBy, { useOrderBy } from "@/components/ButtonOrderBy";
 
@@ -34,13 +34,13 @@ export default function Watchlist() {
   const sortedWatchlist = React.useMemo(() => {
     switch (sortBy) {
       case SORT_BY.POPULARITY:
-        return watchlist.sort((a, b) => sortByNumber(a.popularity, b.popularity, isAsc));
+        return watchlist.sort((a, b) => numberCompare(a.popularity, b.popularity, isAsc));
       case SORT_BY.RELEASE_DATE:
         return watchlist.sort((a, b) =>
-          sortByNumber(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
+          numberCompare(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
         );
       default:
-        return watchlist.sort((a, b) => sortByNumber(a.timeAddedToWatch, b.timeAddedToWatch, isAsc));
+        return watchlist.sort((a, b) => numberCompare(a.timeAddedToWatch, b.timeAddedToWatch, isAsc));
     }
   }, [watchlist, sortBy, isAsc]);
 

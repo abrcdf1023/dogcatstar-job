@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import useMovieSearch from "@/hooks/useMovieSearch";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import getTimestamp from "@/utils/getTimestamp";
-import sortByNumber from "@/utils/sortByNumber";
+import numberCompare from "@/utils/numberCompare";
 
 import Container from "../Container";
 import Typography from "../Typography";
@@ -35,10 +35,10 @@ export const SearchList = () => {
   const movies = React.useMemo(() => {
     switch (sortBy) {
       case SORT_BY.POPULARITY:
-        return moviesData.sort((a, b) => sortByNumber(a.popularity, b.popularity, isAsc));
+        return moviesData.sort((a, b) => numberCompare(a.popularity, b.popularity, isAsc));
       default:
         return moviesData.sort((a, b) =>
-          sortByNumber(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
+          numberCompare(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
         );
     }
   }, [moviesData, sortBy, isAsc]);
