@@ -15,10 +15,12 @@ export interface MoveCardProps {
   title?: string;
   posterPath?: string | null;
   releaseDate?: string;
+  popularity?: number;
+  voteAverage?: number;
 }
 
 export const MovieSimpleCard = (props: MoveCardProps) => {
-  const { className, title = "", posterPath, releaseDate, href } = props;
+  const { className, title = "", posterPath, releaseDate, popularity, voteAverage, href } = props;
 
   return (
     <Card className={cx("root", className)}>
@@ -26,8 +28,10 @@ export const MovieSimpleCard = (props: MoveCardProps) => {
         <Image className={cx("img")} path={posterPath} alt={title} />
       </Link>
       <div className={cx("card-body")}>
-        <Typography>{title}</Typography>
-        <Typography>{releaseDate}</Typography>
+        {title && <Typography fontWeight={700}>{title}</Typography>}
+        {releaseDate && <Typography>Release: {releaseDate}</Typography>}
+        {popularity && <Typography>Popularity: {popularity}</Typography>}
+        {voteAverage && <Typography>Vote Average: {voteAverage}</Typography>}
       </div>
     </Card>
   );

@@ -19,6 +19,7 @@ import ButtonOrderBy, { useOrderBy } from "../ButtonOrderBy";
 enum SORT_BY {
   RELEASE_DATE = "RELEASE_DATE",
   POPULARITY = "POPULARITY",
+  VOTE_AVERAGE = "VOTE_AVERAGE",
 }
 
 export const SearchList = () => {
@@ -36,6 +37,8 @@ export const SearchList = () => {
     switch (sortBy) {
       case SORT_BY.POPULARITY:
         return moviesData.sort((a, b) => numberCompare(a.popularity, b.popularity, isAsc));
+      case SORT_BY.VOTE_AVERAGE:
+        return moviesData.sort((a, b) => numberCompare(a.vote_average, b.vote_average, isAsc));
       default:
         return moviesData.sort((a, b) =>
           numberCompare(getTimestamp(a?.release_date), getTimestamp(b?.release_date), isAsc),
@@ -71,6 +74,8 @@ export const SearchList = () => {
                 title={el.title}
                 posterPath={el.poster_path}
                 releaseDate={el.release_date}
+                popularity={el.popularity}
+                voteAverage={el.vote_average}
               />
             </Grid>
           ))}
@@ -91,6 +96,10 @@ export const SearchList = () => {
             {
               value: SORT_BY.RELEASE_DATE,
               label: "Release Date",
+            },
+            {
+              value: SORT_BY.VOTE_AVERAGE,
+              label: "Vote Average",
             },
             {
               value: SORT_BY.POPULARITY,
