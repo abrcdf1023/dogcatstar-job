@@ -11,6 +11,7 @@
   --black: #000000;
   --white: #ffffff;
 
+  --z-index-header: 900;
   --z-index-modal: 1000;
 }
 
