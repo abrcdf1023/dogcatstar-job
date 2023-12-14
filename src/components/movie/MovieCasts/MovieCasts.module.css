@@ -11,6 +11,10 @@
   padding: 16px 8px;
 }
 
+.list-item {
+  width: 138px;
+}
+
 .list-item-info {
   height: 78px;
   padding: 8px;

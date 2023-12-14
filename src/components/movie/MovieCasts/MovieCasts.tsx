@@ -24,7 +24,7 @@ export const MovieCasts = (props: MovieCreditsProps) => {
       </Typography>
       <div className={cx("list")}>
         {casts?.map((el) => (
-          <Card key={el.id}>
+          <Card key={el.id} className={cx("list-item")}>
             <Image path={el.profile_path} width={138} height={175} alt={el.name || ""} />
             <div className={cx("list-item-info")}>
               <Typography component="h2" fontSize={12} fontWeight={700}>
