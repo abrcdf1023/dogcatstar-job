@@ -13,7 +13,7 @@ export const Header = () => {
     <header className={cx("root")}>
       <div className={cx("content")}>
         <Link href="/" className={cx("logo")}>
-          Dog Cat Star
+          Home
         </Link>
         <SearchBar />
         <Link href="/watchlist">Watch List</Link>
