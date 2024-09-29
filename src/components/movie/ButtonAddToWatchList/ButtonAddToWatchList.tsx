@@ -1,14 +1,10 @@
 "use client";
 
-import * as React from "react";
-
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { WATCH_LIST_KEY } from "@/utils/localStarageKeys";
 import { Movie, PendingWatchMovie } from "@/interfaces/entities";
-
-import ButtonBase, { ButtonBaseProps } from "../../common/ButtonBase";
-
+import { WATCH_LIST_KEY } from "@/utils/localStorageKeys";
 import className from "classnames/bind";
+import ButtonBase, { ButtonBaseProps } from "../../common/ButtonBase";
 import styles from "./ButtonAddToWatchList.module.css";
 const cx = className.bind(styles);
 
