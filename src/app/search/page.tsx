@@ -1,7 +1,10 @@
-import * as React from "react";
-
 import SearchList from "@/components/search/SearchList";
+import { Suspense } from "react";
 
 export default function Search() {
-  return <SearchList />;
+  return (
+    <Suspense>
+      <SearchList />
+    </Suspense>
+  );
 }
