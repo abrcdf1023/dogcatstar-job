@@ -1,37 +1,89 @@
-import { RefObject, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-interface Options extends IntersectionObserverInit {
-  freezeOnceVisible?: boolean;
+/** The hook internal state. */
+type State = {
+  /** A boolean indicating if the element is intersecting. */
+  inView: boolean;
+  /** The intersection observer entry. */
+  entry?: IntersectionObserverEntry;
+};
+
+type UseIntersectionOptionsReturned = [(node?: Element | null) => void, boolean, IntersectionObserverEntry | undefined];
+
+export interface UseIntersectionOptions extends IntersectionObserverInit {
+  /** Call this function whenever the in view state changes */
+  onChange?: (inView: boolean, entry: IntersectionObserverEntry) => void;
+  /** Set the initial value of the `inView` boolean. This can be used if you expect the element to be in the viewport to start with, and you want to trigger something when it leaves. */
+  defaultInView?: boolean;
 }
 
-export default function useIntersectionObserver(
-  elementRef: RefObject<Element>,
-  options?: Options,
-): IntersectionObserverEntry | undefined {
-  const { threshold = 0, root = null, rootMargin = "0%", freezeOnceVisible = false } = options || {};
-  const [entry, setEntry] = useState<IntersectionObserverEntry>();
+/**
+ * Reference: https://github.com/thebuilder/react-intersection-observer/blob/main/src/useInView.tsx
+ */
+export const useIntersectionObserver = ({
+  threshold,
+  root,
+  rootMargin,
+  onChange: onChangeProp = () => {},
+  defaultInView = false,
+}: UseIntersectionOptions = {}) => {
+  const [element, setElement] = useState<Element | null>(null);
+  const [state, setState] = useState<State>(() => ({
+    inView: defaultInView,
+    entry: undefined,
+  }));
 
-  const frozen = entry?.isIntersecting && freezeOnceVisible;
-
-  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
-    setEntry(entry);
-  };
+  const onChange = useCallback(onChangeProp, [onChangeProp]);
 
   useEffect(() => {
-    const node = elementRef?.current; // DOM Ref
-    const hasIOSupport = !!window.IntersectionObserver;
+    // Ensure the browser supports the Intersection Observer API
+    if (!("IntersectionObserver" in window)) return;
+    if (!element) return;
 
-    if (!hasIOSupport || frozen || !node) return;
+    const observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]): void => {
+        const thresholds: number[] = Array.isArray(observer.thresholds) ? observer.thresholds : [observer.thresholds];
 
-    const observerParams = { threshold, root, rootMargin };
-    const observer = new IntersectionObserver(updateEntry, observerParams);
+        entries.forEach((entry) => {
+          // While it would be nice if you could just look at isIntersecting to determine if the component is inside the viewport, browsers can't agree on how to use it.
+          // -Firefox ignores `threshold` when considering `isIntersecting`, so it will never be false again if `threshold` is > 0
+          const inView = entry.isIntersecting && thresholds.some((threshold) => entry.intersectionRatio >= threshold);
 
-    observer.observe(node);
+          setState({ inView, entry });
 
-    return () => observer.disconnect();
+          onChange(inView, entry);
+        });
+      },
+      { threshold, root, rootMargin },
+    );
 
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [elementRef?.current, JSON.stringify(threshold), root, rootMargin, frozen]);
+  }, [
+    // If the threshold is an array, convert it to a string, so it won't change between renders.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Array.isArray(threshold) ? threshold.toString() : threshold,
+    element,
+    root,
+    rootMargin,
+  ]);
 
-  return entry;
-}
+  const entryTarget = state.entry?.target;
+  const previousEntryTarget = useRef<Element>();
+  if (!element && entryTarget && previousEntryTarget.current !== entryTarget) {
+    // 當 element 不存在時（通常是被 unmount 掉），重置狀態為初始值
+    // 不寫在 useEffect 原因是 element 被 unmount 時不會觸發 render 因此 useEffect 不會執行
+    // 可參考 react 官網的 [you-may-not-need-an-effect](https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes)
+    previousEntryTarget.current = entryTarget;
+    setState({
+      inView: defaultInView,
+      entry: undefined,
+    });
+  }
+
+  return [setElement, state.inView, state.entry] as UseIntersectionOptionsReturned;
+};

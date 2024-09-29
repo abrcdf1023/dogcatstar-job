@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import useMovieSearch from "@/hooks/useMovieSearch";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
@@ -26,13 +26,11 @@ enum SORT_BY {
 export const SearchList = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
-  const triggeRef = React.useRef<HTMLDivElement>(null);
   const { setPage, movies: moviesData, isLoading, isValidating } = useMovieSearch(query);
   const { sortBy, handleSortBy } = useSortBy(SORT_BY.RELEASE_DATE);
   const { isAsc, handleOrderBy } = useOrderBy();
 
-  const entry = useIntersectionObserver(triggeRef);
-  const isVisible = !!entry?.isIntersecting;
+  const [setElement, isVisible] = useIntersectionObserver();
 
   const movies = React.useMemo(() => {
     switch (sortBy) {
@@ -119,7 +117,7 @@ export const SearchList = () => {
             Loading...
           </Typography>
         )}
-        <div ref={triggeRef} style={{ height: 10 }} />
+        <div ref={setElement} style={{ height: 10 }} />
       </Container>
     </>
   );
