@@ -9,6 +9,11 @@ const nextConfig = {
     ],
     deviceSizes: [600, 900, 1200],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   experimental: {
     scrollRestoration: true,
   },
