@@ -1,13 +1,13 @@
 import "server-only";
 
 import { Cast, Crew } from "@/interfaces/entities";
-import client from "./client";
+import { tmdbClient } from "./client";
 
 const fetchMovieCredits = (movieId: string) =>
-  client<{
+  tmdbClient<{
     id: number;
     cast: Cast[];
     crew: Crew[];
-  }>(`https://api.themoviedb.org/3/movie/${movieId}/credits`);
+  }>(`/movie/${movieId}/credits`);
 
 export default fetchMovieCredits;

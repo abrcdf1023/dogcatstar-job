@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import useMovies, { UseMoviesMode } from "@/hooks/useMovies";
+import useMovies, { UseMoviesArgs, UseMoviesMode } from "@/hooks/useMovies";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
 import { useSearchParams } from "next/navigation";
@@ -12,9 +12,9 @@ import Container from "../../common/Container";
 import Grid from "../../common/Grid";
 import MovieSimpleCard from "../../common/MovieSimpleCard";
 import SelectSortBy, { useSortBy } from "../../common/SelectSortBy";
-import Skeleton from "../../common/Skeleton";
 import Typography from "../../common/Typography";
 
+import { useSWRConfig } from "swr";
 import styles from "./MovieInfiniteScrollList.module.css";
 
 enum SORT_BY {
@@ -26,13 +26,24 @@ enum SORT_BY {
 export interface MovieInfiniteScrollListProps {
   mode: UseMoviesMode;
   emptyPlaceholder?: string;
+  fallbackData?: UseMoviesArgs["fallbackData"];
 }
 
 export const MovieInfiniteScrollList = (props: MovieInfiniteScrollListProps) => {
-  const { mode, emptyPlaceholder = "Movies empty." } = props;
+  const { mode, emptyPlaceholder = "Movies empty.", fallbackData } = props;
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
-  const { setPage, movies: moviesData, isLoading, isValidating } = useMovies(mode, query);
+  const { cache } = useSWRConfig();
+  const {
+    setPage,
+    movies: moviesData,
+    isLoading,
+    isValidating,
+  } = useMovies({
+    mode,
+    query,
+    fallbackData,
+  });
   const { sortBy, handleSortBy } = useSortBy(SORT_BY.RELEASE_DATE);
   const { isAsc, handleOrderBy } = useOrderBy();
 
@@ -58,17 +69,6 @@ export const MovieInfiniteScrollList = (props: MovieInfiniteScrollListProps) => 
   }, [isVisible]);
 
   const renderList = () => {
-    if (isLoading) {
-      return (
-        <Grid container>
-          {Array.from({ length: 20 }, (_, i) => (
-            <Grid key={i}>
-              <Skeleton width={220} height={330} />
-            </Grid>
-          ))}
-        </Grid>
-      );
-    }
     if (movies.length > 0) {
       return (
         <Grid container>

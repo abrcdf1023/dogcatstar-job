@@ -1,8 +1,8 @@
 import "server-only";
 
 import { Reviews } from "@/interfaces/entities";
-import client from "./client";
+import { tmdbClient } from "./client";
 
-const fetchMovieReviews = (movieId: string) => client<Reviews>(`https://api.themoviedb.org/3/movie/${movieId}/reviews`);
+const fetchMovieReviews = (movieId: string) => tmdbClient<Reviews>(`/movie/${movieId}/reviews`);
 
 export default fetchMovieReviews;
