@@ -13,15 +13,17 @@ type Option = {
 export interface SortSelectProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options?: Option[];
+  value?: string;
 }
 
 export const SelectSortBy = (props: SortSelectProps) => {
-  const { className, onChange, options, ...other } = props;
+  const { className, onChange, options, value, ...other } = props;
 
   return (
     <div className={cx("root", className)} {...other}>
       Sort By:
-      <select onChange={onChange}>
+      <select value={value} onChange={onChange}>
+        <option value="">Select</option>
         {options?.map((el) => (
           <option key={el.value} value={el.value}>
             {el.label}

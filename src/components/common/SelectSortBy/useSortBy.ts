@@ -1,7 +1,7 @@
 import * as React from "react";
 
-export function useSortBy<S>(defaultSortBy: S) {
-  const [sortBy, setSortBy] = React.useState<S>(defaultSortBy);
+export function useSortBy<S>(defaultSortBy?: S) {
+  const [sortBy, setSortBy] = React.useState<S | undefined>(defaultSortBy);
 
   const handleSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value as S);
