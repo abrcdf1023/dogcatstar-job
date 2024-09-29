@@ -2,19 +2,18 @@
 
 import * as React from "react";
 
-import { useSearchParams } from "next/navigation";
-import useMovieSearch from "@/hooks/useMovieSearch";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import useMovieSearch from "@/hooks/useMovieSearch";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
-
-import Container from "../../common/Container";
-import Typography from "../../common/Typography";
-import MovieSimpleCard from "../../common/MovieSimpleCard";
-import Grid from "../../common/Grid";
-import Skeleton from "../../common/Skeleton";
-import SelectSortBy, { useSortBy } from "../../common/SelectSortBy";
+import { useSearchParams } from "next/navigation";
 import ButtonOrderBy, { useOrderBy } from "../../common/ButtonOrderBy";
+import Container from "../../common/Container";
+import Grid from "../../common/Grid";
+import MovieSimpleCard from "../../common/MovieSimpleCard";
+import SelectSortBy, { useSortBy } from "../../common/SelectSortBy";
+import Skeleton from "../../common/Skeleton";
+import Typography from "../../common/Typography";
 
 import styles from "./SearchList.module.css";
 

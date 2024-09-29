@@ -1,10 +1,8 @@
-import * as React from "react";
-
 import fetchPopularList from "@/apis/fetchPopularList";
 
 import Container from "@/components/common/Container";
-import MovieSimpleCard from "@/components/common/MovieSimpleCard";
 import Grid from "@/components/common/Grid";
+import MovieSimpleCard from "@/components/common/MovieSimpleCard";
 
 export default async function Home() {
   const data = await fetchPopularList();
