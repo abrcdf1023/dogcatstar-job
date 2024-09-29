@@ -1,10 +1,10 @@
-import SearchList from "@/components/search/SearchList";
+import MovieInfiniteScrollList from "@/components/movie/MovieInfiniteScrollList";
 import { Suspense } from "react";
 
 export default function Search() {
   return (
     <Suspense>
-      <SearchList />
+      <MovieInfiniteScrollList mode="search" />
     </Suspense>
   );
 }

@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import useMovieSearch from "@/hooks/useMovieSearch";
+import useMovies, { UseMoviesMode } from "@/hooks/useMovies";
 import getTimestamp from "@/utils/getTimestamp";
 import numberCompare from "@/utils/numberCompare";
 import { useSearchParams } from "next/navigation";
@@ -15,7 +15,7 @@ import SelectSortBy, { useSortBy } from "../../common/SelectSortBy";
 import Skeleton from "../../common/Skeleton";
 import Typography from "../../common/Typography";
 
-import styles from "./SearchList.module.css";
+import styles from "./MovieInfiniteScrollList.module.css";
 
 enum SORT_BY {
   RELEASE_DATE = "RELEASE_DATE",
@@ -23,10 +23,16 @@ enum SORT_BY {
   VOTE_AVERAGE = "VOTE_AVERAGE",
 }
 
-export const SearchList = () => {
+export interface MovieInfiniteScrollListProps {
+  mode: UseMoviesMode;
+  emptyPlaceholder?: string;
+}
+
+export const MovieInfiniteScrollList = (props: MovieInfiniteScrollListProps) => {
+  const { mode, emptyPlaceholder = "Movies empty." } = props;
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
-  const { setPage, movies: moviesData, isLoading, isValidating } = useMovieSearch(query);
+  const { setPage, movies: moviesData, isLoading, isValidating } = useMovies(mode, query);
   const { sortBy, handleSortBy } = useSortBy(SORT_BY.RELEASE_DATE);
   const { isAsc, handleOrderBy } = useOrderBy();
 
@@ -82,7 +88,7 @@ export const SearchList = () => {
       );
     }
     if (movies.length === 0) {
-      return <Typography fontSize={24}>There are no movies that matched your query.</Typography>;
+      return <Typography fontSize={24}>{emptyPlaceholder}</Typography>;
     }
   };
 

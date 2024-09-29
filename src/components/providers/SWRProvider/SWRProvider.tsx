@@ -2,13 +2,15 @@
 
 import * as React from "react";
 
-import { SWRConfig } from "swr";
+import { SWRConfig, SWRConfiguration } from "swr";
 import ErrorToast from "../../common/ErrorToast";
 
-export interface SWRProviderProps {}
+export interface SWRProviderProps {
+  value?: SWRConfiguration | ((parentConfig?: SWRConfiguration | undefined) => SWRConfiguration);
+}
 
 export const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) => {
-  const { children } = props;
+  const { value, children } = props;
   const [showError, setShowError] = React.useState(false);
   const timer = React.useRef<NodeJS.Timeout>();
 
@@ -26,6 +28,7 @@ export const SWRProvider = (props: React.PropsWithChildren<SWRProviderProps>) =>
     <SWRConfig
       value={{
         onError: handleError,
+        ...value,
       }}
     >
       {showError && <ErrorToast />}
