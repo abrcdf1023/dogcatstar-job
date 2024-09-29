@@ -33,7 +33,15 @@ export default function useMovies(args: UseMoviesArgs) {
     revalidateOnFocus: false,
     fallbackData,
   });
-  const movies = React.useMemo(() => data?.flatMap((el) => el) || [], [data]);
+  const movies = React.useMemo(() => {
+    if (!data) return [];
+    const seen = new Set<Movie["id"]>();
+    return data.flat().filter((movie) => {
+      if (seen.has(movie.id)) return false;
+      seen.add(movie.id);
+      return true;
+    });
+  }, [data]);
 
   return {
     movies,
