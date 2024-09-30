@@ -1,9 +1,9 @@
+import { MOVIE_SORT_BY } from "@/components/movie/MovieInfiniteScrollList/MovieInfiniteScrollList";
 import ButtonOrderBy, { ButtonOrderByProps } from "../ButtonOrderBy";
 import Container from "../Container";
 import SelectSortBy, { SelectSortByProps } from "../SelectSortBy";
 
 import styles from "./StickyToolsBar.module.css";
-import { MOVIE_SORT_BY } from "./useSortedMovies";
 
 export interface StickyToolsBarProps {
   onSortByChange?: SelectSortByProps["onChange"];

@@ -27,7 +27,7 @@ export default function useMovies(args: UseMoviesArgs) {
     })}`;
   };
 
-  const { data, setSize, isLoading, isValidating } = useSWRInfinite(getKey, fetcher, {
+  const { data, setSize, isLoading, isValidating, size } = useSWRInfinite(getKey, fetcher, {
     initialSize: 1,
     revalidateFirstPage: false,
     revalidateOnFocus: false,
@@ -47,6 +47,7 @@ export default function useMovies(args: UseMoviesArgs) {
     movies,
     isLoading,
     isValidating,
+    page: size,
     setPage: setSize,
   };
 }
