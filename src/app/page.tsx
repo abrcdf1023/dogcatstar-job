@@ -3,7 +3,7 @@ import Grid from "@/components/common/Grid";
 import MovieSimpleCard from "@/components/common/MovieSimpleCard";
 
 export default async function Home() {
-  const data = await fetchPopularList();
+  const data = await fetchPopularList({ page: 1 });
 
   return (
     <Grid container>
