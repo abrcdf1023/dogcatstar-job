@@ -1,17 +1,15 @@
 "use client";
 
+import StickyToolsBar from "@/components/common/StickyToolsBar/StickyToolsBar";
+import { useSortedMovies } from "@/components/common/StickyToolsBar/useSortedMovies";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import useMovies, { UseMoviesArgs, UseMoviesMode } from "@/hooks/useMovies";
-import { MOVIE_SORT_BY, useSortedMovies } from "@/hooks/useSortedMovies";
 import { useSearchParams } from "next/navigation";
 import * as React from "react";
-import ButtonOrderBy from "../../common/ButtonOrderBy";
 import Container from "../../common/Container";
 import Grid from "../../common/Grid";
 import MovieSimpleCard from "../../common/MovieSimpleCard";
-import SelectSortBy from "../../common/SelectSortBy";
 import Typography from "../../common/Typography";
-import styles from "./MovieInfiniteScrollList.module.css";
 
 export interface MovieInfiniteScrollListProps {
   mode: UseMoviesMode;
@@ -64,29 +62,7 @@ export const MovieInfiniteScrollList = (props: MovieInfiniteScrollListProps) => 
 
   return (
     <>
-      <div className={styles["tools-bar"]}>
-        <Container className={styles["container"]}>
-          <SelectSortBy
-            onChange={handleSortBy}
-            value={sortBy}
-            options={[
-              {
-                value: MOVIE_SORT_BY.RELEASE_DATE,
-                label: "Release Date",
-              },
-              {
-                value: MOVIE_SORT_BY.VOTE_AVERAGE,
-                label: "Vote Average",
-              },
-              {
-                value: MOVIE_SORT_BY.POPULARITY,
-                label: "Popularity",
-              },
-            ]}
-          />
-          <ButtonOrderBy onClick={handleOrderBy} isAsc={isAsc} />
-        </Container>
-      </div>
+      <StickyToolsBar onSortByChange={handleSortBy} onOrderByClick={handleOrderBy} sortBy={sortBy} isAsc={isAsc} />
       <Container style={{ paddingTop: 24 }}>
         {renderList()}
         {isValidating && (
