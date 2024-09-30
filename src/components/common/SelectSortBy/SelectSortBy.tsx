@@ -10,13 +10,13 @@ type Option = {
   label: string;
 };
 
-export interface SortSelectProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
+export interface SelectSortByProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options?: Option[];
   value?: string;
 }
 
-export const SelectSortBy = (props: SortSelectProps) => {
+export const SelectSortBy = (props: SelectSortByProps) => {
   const { className, onChange, options, value, ...other } = props;
 
   return (
